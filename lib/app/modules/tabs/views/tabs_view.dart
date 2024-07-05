@@ -9,7 +9,7 @@ class TabsView extends GetView<TabsController>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       appBar: AppBar(
         title: const Text('TabsView'),
         centerTitle: true,
@@ -26,8 +26,8 @@ class TabsView extends GetView<TabsController>{
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "首页"
+              icon: Icon(Icons.home),
+              label: "首页"
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.category),
@@ -47,7 +47,7 @@ class TabsView extends GetView<TabsController>{
           ),
         ],
       ),
-    );
+    ));
   }
 
 }

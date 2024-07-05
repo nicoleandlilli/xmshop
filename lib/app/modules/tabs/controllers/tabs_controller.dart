@@ -15,7 +15,7 @@ class TabsController extends GetxController{
   }
 
   void setCurrentIndex(index){
-    super.onClose();
+    currentIndex.value=index;
     update();
   }
 
