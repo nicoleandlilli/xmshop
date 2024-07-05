@@ -18,10 +18,10 @@ class TabsView extends GetView<TabsController>{
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Colors.red,//选中的颜色
         iconSize: 35,
-        currentIndex:0,//第几个菜单选中
+        currentIndex:controller.currentIndex.value,//第几个菜单选中
         type: BottomNavigationBarType.fixed, //如果有四个或四个以上的
         onTap: (index){
-          //注意
+          controller.setCurrentIndex(index);
 
         },
         items: const [
