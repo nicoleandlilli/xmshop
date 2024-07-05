@@ -10,11 +10,11 @@ class TabsView extends GetView<TabsController>{
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      appBar: AppBar(
-        title: const Text('TabsView'),
-        centerTitle: true,
-      ),
-      body: Text('tab'),
+      // appBar: AppBar(
+      //   title: const Text('TabsView'),
+      //   centerTitle: true,
+      // ),
+      body: controller.pages[controller.currentIndex.value],
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Colors.red,//选中的颜色
         iconSize: 35,
