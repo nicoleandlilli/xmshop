@@ -14,7 +14,13 @@ class TabsView extends GetView<TabsController>{
       //   title: const Text('TabsView'),
       //   centerTitle: true,
       // ),
-      body: controller.pages[controller.currentIndex.value],
+      body: PageView(
+        controller: controller.pageController,
+        children: controller.pages,
+        onPageChanged: (index){
+          controller.setCurrentIndex(index);
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Colors.red,//选中的颜色
         iconSize: 35,
@@ -22,6 +28,7 @@ class TabsView extends GetView<TabsController>{
         type: BottomNavigationBarType.fixed, //如果有四个或四个以上的
         onTap: (index){
           controller.setCurrentIndex(index);
+          controller.pageController.jumpToPage(index);
 
         },
         items: const [

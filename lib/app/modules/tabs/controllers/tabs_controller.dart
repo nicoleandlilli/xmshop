@@ -9,6 +9,7 @@ import 'package:xmeshop/app/modules/user/views/user_view.dart';
 class TabsController extends GetxController{
 
   RxInt currentIndex = 0.obs;
+  PageController pageController=PageController(initialPage: 0);
   final List<Widget> pages=const [
     HomeView(),
     CategoryView(),
