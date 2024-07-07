@@ -2,9 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController{
+  //浮动导航开关
   RxBool flag=false.obs;
-
+  //ScrollController
   final ScrollController scrollController = ScrollController();
+
+  List swiperList=[
+    {
+      "url":"https://www.itying.com/images/focus/focus01.png"
+    },
+    {
+      "url":"https://www.itying.com/images/focus/focus02.png"
+    }
+  ];
 
   @override
   void onInit() {
