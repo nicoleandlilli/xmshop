@@ -89,18 +89,20 @@ class HomeView extends GetView<HomeController>{
     return SizedBox(
       width: ScreenAdapter.width(1000),
       height: ScreenAdapter.height(682),
-      child: Swiper(
+      child: Obx(() => Swiper(
         itemBuilder: (context, index){
-          return Image.network(controller.swiperList[index]["url"],fit: BoxFit.fill,);
+          String picUrl = "https://miapp.itying.com/${controller.swiperList[index]["pic"]}";
+          picUrl = picUrl.replaceAll("\\", "/");
+          return Image.network(picUrl,fit: BoxFit.fill,);
         },
-        itemCount: controller.swiperList.length,
+        itemCount: controller.swiperList.value.length,
         pagination: const SwiperPagination(
           builder: SwiperPagination.rect,
         ),
         autoplay: true,
         loop: true,
         // duration: 3000,
-      ),
+      )),
     );
   }
 
