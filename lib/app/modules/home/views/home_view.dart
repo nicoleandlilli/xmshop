@@ -91,7 +91,7 @@ class HomeView extends GetView<HomeController>{
       height: ScreenAdapter.height(682),
       child: Obx(() => Swiper(
         itemBuilder: (context, index){
-          String picUrl = "https://miapp.itying.com/${controller.swiperList[index]["pic"]}";
+          String picUrl = "https://miapp.itying.com/${controller.swiperList[index].pic}";
           picUrl = picUrl.replaceAll("\\", "/");
           return Image.network(picUrl,fit: BoxFit.fill,);
         },

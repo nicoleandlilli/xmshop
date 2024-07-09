@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:xmeshop/app/models/focus_model.dart';
 
 class HomeController extends GetxController{
   //浮动导航开关
@@ -8,7 +9,7 @@ class HomeController extends GetxController{
   //ScrollController
   final ScrollController scrollController = ScrollController();
 
-  RxList swiperList=[].obs;   //注意，需要定义成响应式数据
+  RxList<FocusModelItem> swiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
 
   @override
   void onInit() {
@@ -38,10 +39,16 @@ class HomeController extends GetxController{
   }
 
   getFocusData() async{
-    var response = await Dio().get("https://miapp.itying.com/api/focus");
-    print(response);
-    swiperList.value=response.data["result"];
-    update();
+    try {
+      var response = await Dio().get("https://miapp.itying.com/api/focus");
+      print(response);
+      // swiperList.value = response.data["result"];
+      var focus = FocusModel.fromJson(response.data);
+      swiperList.value = focus.result;
+      update();
+    }catch(e){
+      print("home controller exception.................$e");
+    }
   }
 
   @override
