@@ -135,8 +135,26 @@ class HomeView extends GetView<HomeController>{
               });
         },
         itemCount: 2,
-        pagination: const SwiperPagination(
-          builder: SwiperPagination.rect,
+        pagination: SwiperPagination(
+          margin: const EdgeInsets.all(0.0),
+          // builder: SwiperPagination.rect,
+          builder: SwiperCustomPagination(
+            builder: (BuildContext context, SwiperPluginConfig config){
+              return ConstrainedBox(
+                  constraints: BoxConstraints.expand(height:  ScreenAdapter.height(20)),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(child: Align(
+                      alignment: Alignment.center,
+                      child: const RectSwiperPaginationBuilder(
+                        color: Colors.black12,
+                        activeColor: Colors.black54,
+                      ).build(context, config),
+                    )),
+                  ],
+                ),
+              );
+          }),
         ),
         // duration: 3000,
       ),
