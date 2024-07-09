@@ -5,7 +5,7 @@ import 'package:xmeshop/app/modules/home/controllers/home_controller.dart';
 import 'package:xmeshop/app/services/kee_alive_wrapper.dart';
 import 'package:xmeshop/app/services/ncFonts.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
-
+///请求转换对象地址： https://autocode.icu/jsontodart
 class HomeView extends GetView<HomeController>{
   const HomeView({super.key});
 
