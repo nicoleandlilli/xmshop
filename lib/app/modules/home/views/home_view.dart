@@ -36,9 +36,19 @@ class HomeView extends GetView<HomeController>{
                 controller: controller.scrollController,
                 children: [
                   _buildSwiperView(),
+                  _buildBanner(),
                 ],
               ),
             );
+  }
+
+  ///创建轮播图下面的banner
+  SizedBox _buildBanner() {
+    return SizedBox(
+                  width: ScreenAdapter.width(1080),
+                  height: ScreenAdapter.width(92),
+                  child: Image.asset("assets/images/xiaomiBanner.png",fit: BoxFit.cover,),
+                );
   }
 
   ///顶部导航

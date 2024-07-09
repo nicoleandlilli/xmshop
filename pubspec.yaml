@@ -66,7 +66,10 @@ flutter:
     - family: ncIcon #指定一个字体名，根据自己的需求定义
       fonts:
         - asset: assets/fonts/iconfont.ttf
-
+  assets:
+    - assets/images/xiaomiBanner.png
+    - assets/images/2.0x/xiaomiBanner.png
+    - assets/images/3.0x/xiaomiBanner.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
