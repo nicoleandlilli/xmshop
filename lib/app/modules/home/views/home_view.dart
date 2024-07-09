@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
@@ -28,22 +29,26 @@ class HomeView extends GetView<HomeController>{
   ///内容区域
   Widget _buildBody() {
     return Positioned(
-              top: -55,
+              // top: -55,
+              top: -60,
               left: 0,
               right: 0,
-              bottom: 0,
+              // bottom: 0,
               child: ListView(
                 controller: controller.scrollController,
+                shrinkWrap: true,
+
                 children: [
                   _buildSwiperView(),
                   _buildBanner(),
+                  _buildClassifiedView(),
                 ],
               ),
             );
   }
 
   ///创建轮播图下面的banner
-  SizedBox _buildBanner() {
+  Widget _buildBanner() {
     return SizedBox(
                   width: ScreenAdapter.width(1080),
                   height: ScreenAdapter.width(92),
@@ -54,7 +59,8 @@ class HomeView extends GetView<HomeController>{
   ///顶部导航
   Widget _buildAppBar() {
     return Positioned(
-              top: 0,
+              top: -18,
+              // top: 0,
               left: 0,
               right: 0,
               child: Obx(()=> AppBar(
@@ -95,10 +101,52 @@ class HomeView extends GetView<HomeController>{
             );
   }
 
+  Widget _buildClassifiedView() {
+    String picUrl = "https://miapp.itying.com/public/upload/NssHlEUvoWU36EpuF3S1URMB.png";
+
+    return Container(
+      width: ScreenAdapter.width(1080),
+      // height: ScreenAdapter.height(400),
+      height: ScreenAdapter.height(425),
+      color: Colors.red,
+      child: Swiper(
+        itemBuilder: (context, index){
+          return GridView.builder(
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                // crossAxisSpacing: ScreenAdapter.width(20),
+                // mainAxisSpacing: ScreenAdapter.height(20),
+
+              ),
+              itemBuilder: (context, index){
+                return Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: ScreenAdapter.width(136),
+                      height: ScreenAdapter.height(136),
+                      child: Image.network(picUrl, fit: BoxFit.fitHeight,),
+                    ),
+                    // Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(4), 0, 0), child: Text("手机", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),))
+                    Text("手机", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
+                  ],
+                );
+              });
+        },
+        itemCount: 2,
+        pagination: const SwiperPagination(
+          builder: SwiperPagination.rect,
+        ),
+        // duration: 3000,
+      ),
+    );
+  }
+
   Widget _buildSwiperView() {
     return SizedBox(
       width: ScreenAdapter.width(1000),
-      height: ScreenAdapter.height(682),
+      height: ScreenAdapter.height(472),
       child: Obx(() => Swiper(
         itemBuilder: (context, index){
           String picUrl = "https://miapp.itying.com/${controller.swiperList[index].pic}";
