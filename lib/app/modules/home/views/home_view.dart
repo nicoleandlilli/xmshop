@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/home/controllers/home_controller.dart';
@@ -42,10 +43,132 @@ class HomeView extends GetView<HomeController>{
                   _buildSwiperView(),
                   _buildBanner(),
                   _buildCategory(),
+                  _buildHotSellingBanner(),
+                  _buildBestSelling(),
+
+
                 ],
               ),
             );
   }
+
+
+  ///创建热销甄选
+  Widget _buildBestSelling(){
+    return Column(
+      children: [
+        Padding(
+        padding: EdgeInsets.fromLTRB(ScreenAdapter.width(30), ScreenAdapter.height(20), ScreenAdapter.width(30), ScreenAdapter.height(20)),
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("热销甄选", style: TextStyle(
+              fontSize: ScreenAdapter.fontSize(46),
+            ),),
+            Text("更多手机>", style: TextStyle(
+              fontSize: ScreenAdapter.fontSize(38),
+            ),),
+          ],
+        ),
+       ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(ScreenAdapter.width(20), ScreenAdapter.height(0), ScreenAdapter.width(20), ScreenAdapter.height(20)),
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                  child: Container(
+
+                    height: ScreenAdapter.height(738),
+                    color: Colors.red,
+                    child: Text("1"),
+              )),
+              SizedBox(width: ScreenAdapter.width(20),),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: ScreenAdapter.height(738),
+                    color: Colors.blue,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            color: Colors.cyanAccent,
+                            child: const Row(
+                                children: [
+                                  Expanded(
+                                    flex: 3,
+                                    child: Text("左侧")),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text("右侧")),
+                                ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            color: Colors.orange,
+                            child: const Row(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Text("左侧")),
+                                Expanded(
+                                    flex: 2,
+                                    child: Text("右侧")),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            color: Colors.amberAccent,
+                            child: const Row(
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Text("左侧")),
+                                Expanded(
+                                    flex: 2,
+                                    child: Text("右侧")),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+              )),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  ///创建热销banner
+  Widget _buildHotSellingBanner() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(ScreenAdapter.width(20), ScreenAdapter.width(20), ScreenAdapter.width(20), 0),
+      child: Container(
+        height: ScreenAdapter.height(420),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(ScreenAdapter.width(20)),
+            image: const DecorationImage(
+              image: AssetImage( "assets/images/xiaomiBanner2.png"),
+              fit: BoxFit.cover,
+            ),
+        ),
+      ),
+    );
+  }
+
 
   ///创建轮播图下面的banner
   Widget _buildBanner() {
