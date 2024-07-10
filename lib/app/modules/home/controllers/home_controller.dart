@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/models/category_model.dart';
 import 'package:xmeshop/app/models/focus_model.dart';
+import 'package:xmeshop/app/models/plist_model.dart';
 ///自动生成对象的类：
 
 /// https://autocode.icu/jsontodart
@@ -15,6 +16,7 @@ class HomeController extends GetxController{
   RxList<FocusModelItem> swiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<CategoryModelItem> categoryList=<CategoryModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<FocusModelItem> bestSellingSwiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
+  RxList<PListModelItem> bestSellingPList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
 
   @override
   void onInit() {
@@ -23,6 +25,7 @@ class HomeController extends GetxController{
     getFocusData();
     getCategoryData();
     getBestSellingData();
+    getBestSellingPlistData();
   }
 
   void addScrollControllerListener() {
@@ -44,6 +47,22 @@ class HomeController extends GetxController{
     }
   });
   }
+
+  ///获取热销甄选右侧的商品数据
+  getBestSellingPlistData() async{
+    try {
+      var response = await Dio().get("https://miapp.itying.com/api/plist?is_hot=1\$pageSize=3");
+      // var response = await Dio().get("https://miapp.itying.com/api/plist");
+      print(response);
+      // swiperList.value = response.data["result"];
+      var focus = PListModel.fromJson(response.data);
+      bestSellingPList.value = focus.result;
+      update();
+    }catch(e){
+      print("home controller exception.................$e");
+    }
+  }
+
 
   ///获取热销甄选的轮播图
   getBestSellingData() async{

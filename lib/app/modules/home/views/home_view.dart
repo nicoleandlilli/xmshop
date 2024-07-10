@@ -81,8 +81,7 @@ class HomeView extends GetView<HomeController>{
               Expanded(
                 flex: 1,
                   child: SizedBox(
-                    // height: ScreenAdapter.height(738),
-                    height: ScreenAdapter.height(680),
+                    height: ScreenAdapter.height(738),
                     child: Obx(()=> Swiper(
                       itemBuilder: (context, index){
                         // String picUrl = "https://itying.com/images/b_focus0${index+1}.png";
@@ -120,99 +119,145 @@ class HomeView extends GetView<HomeController>{
                   flex: 1,
                   child: Container(
                     height: ScreenAdapter.height(738),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 3,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("空气炸烤箱", style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("大容量专业炸烤", style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("众筹价￥345元", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
-                                      ],
-                                    )),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(ScreenAdapter.height(8)),
-                                      child: Image.network("https://www.itying.com/images/shouji.png",fit:BoxFit.cover),
-                                    ),
-                                  ),
-                                ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(20),),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("空气炸烤箱", style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("大容量专业炸烤", style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("众筹价￥345元", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
-                                      ],
-                                    )),
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(ScreenAdapter.height(8)),
-                                    child: Image.network("https://www.itying.com/images/kaoxiang.png",fit:BoxFit.cover),
+                    child: Obx(()=>Column(
+                      children: controller.bestSellingPList.asMap().entries.map((entrie) {
+                        var key = entrie.key;
+                        var value = entrie.value;
+                        String picUrl = "https://miapp.itying.com/${value.pic}";
+                        picUrl = picUrl.replaceAll("\\", "/");
+                        return Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, key==2?0:ScreenAdapter.height(20)),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 3,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(height: ScreenAdapter.height(20),),
+                                              Text(value.title, style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
+                                              SizedBox(height: ScreenAdapter.height(20),),
+                                              Text(value.subTitle, style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
+                                              SizedBox(height: ScreenAdapter.height(20),),
+                                              Text("￥${value.price}", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
+                                            ],
+                                          )),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: EdgeInsets.all(ScreenAdapter.height(8)),
+                                          child: Image.network(picUrl,fit:BoxFit.cover),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              
+                            ],
                           ),
-                        ),
-                        SizedBox(height: ScreenAdapter.height(20),),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("空气炸烤箱", style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("大容量专业炸烤", style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
-                                        SizedBox(height: ScreenAdapter.height(20),),
-                                        Text("众筹价￥345元", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
-                                      ],
-                                    )),
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(ScreenAdapter.height(8)),
-                                    child: Image.network("https://www.itying.com/images/shouji.png",fit:BoxFit.cover),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                        );
+                      }).toList(),
+                    )),
+
+                    // Column(
+                    //   children: [
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Container(
+                    //         child: Row(
+                    //             children: [
+                    //               Expanded(
+                    //                 flex: 3,
+                    //                 child: Column(
+                    //                   mainAxisAlignment: MainAxisAlignment.center,
+                    //                   children: [
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("空气炸烤箱", style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("大容量专业炸烤", style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("众筹价￥345元", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
+                    //                   ],
+                    //                 )),
+                    //               Expanded(
+                    //                 flex: 2,
+                    //                 child: Padding(
+                    //                   padding: EdgeInsets.all(ScreenAdapter.height(8)),
+                    //                   child: Image.network("https://www.itying.com/images/shouji.png",fit:BoxFit.cover),
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(height: ScreenAdapter.height(20),),
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Container(
+                    //         child: Row(
+                    //           children: [
+                    //             Expanded(
+                    //                 flex: 3,
+                    //                 child: Column(
+                    //                   mainAxisAlignment: MainAxisAlignment.center,
+                    //                   children: [
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("空气炸烤箱", style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("大容量专业炸烤", style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("众筹价￥345元", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
+                    //                   ],
+                    //                 )),
+                    //             Expanded(
+                    //               flex: 2,
+                    //               child: Padding(
+                    //                 padding: EdgeInsets.all(ScreenAdapter.height(8)),
+                    //                 child: Image.network("https://www.itying.com/images/kaoxiang.png",fit:BoxFit.cover),
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(height: ScreenAdapter.height(20),),
+                    //     Expanded(
+                    //       flex: 1,
+                    //       child: Container(
+                    //         child: Row(
+                    //           children: [
+                    //             Expanded(
+                    //                 flex: 3,
+                    //                 child: Column(
+                    //                   mainAxisAlignment: MainAxisAlignment.center,
+                    //                   children: [
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("空气炸烤箱", style: TextStyle(fontSize: ScreenAdapter.fontSize(38),fontWeight: FontWeight.bold),),
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("大容量专业炸烤", style: TextStyle(fontSize: ScreenAdapter.fontSize(28)),),
+                    //                     SizedBox(height: ScreenAdapter.height(20),),
+                    //                     Text("众筹价￥345元", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
+                    //                   ],
+                    //                 )),
+                    //             Expanded(
+                    //               flex: 2,
+                    //               child: Padding(
+                    //                 padding: EdgeInsets.all(ScreenAdapter.height(8)),
+                    //                 child: Image.network("https://www.itying.com/images/shouji.png",fit:BoxFit.cover),
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
               )),
             ],
           ),
