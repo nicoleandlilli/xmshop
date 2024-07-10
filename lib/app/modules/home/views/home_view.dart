@@ -385,7 +385,7 @@ class HomeView extends GetView<HomeController>{
                   width: controller.flag.value?ScreenAdapter.width(800):ScreenAdapter.width(620),
                   height: ScreenAdapter.height(96),
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(230, 252, 243, 236),
+                    color: const Color.fromRGBO(246, 246, 246, 1),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   duration: const Duration(milliseconds: 300),
