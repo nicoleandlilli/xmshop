@@ -17,6 +17,7 @@ class HomeController extends GetxController{
   RxList<CategoryModelItem> categoryList=<CategoryModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<FocusModelItem> bestSellingSwiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<PListModelItem> bestSellingPList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
+  RxList<PListModelItem> popularProductList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
 
   @override
   void onInit() {
@@ -26,6 +27,7 @@ class HomeController extends GetxController{
     getCategoryData();
     getBestSellingData();
     getBestSellingPlistData();
+    getPopularProductListData();
   }
 
   void addScrollControllerListener() {
@@ -47,6 +49,22 @@ class HomeController extends GetxController{
     }
   });
   }
+
+  ///获取热销甄选下的热门商品
+  getPopularProductListData() async{
+    try {
+      var response = await Dio().get("https://miapp.itying.com/api/plist?is_best=1");
+      // var response = await Dio().get("https://miapp.itying.com/api/plist");
+      print(response);
+      // swiperList.value = response.data["result"];
+      var focus = PListModel.fromJson(response.data);
+      popularProductList.value = focus.result;
+      update();
+    }catch(e){
+      print("home controller exception.................$e");
+    }
+  }
+
 
   ///获取热销甄选右侧的商品数据
   getBestSellingPlistData() async{

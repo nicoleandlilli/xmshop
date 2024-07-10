@@ -80,49 +80,52 @@ class HomeView extends GetView<HomeController>{
         Container(
           color: const Color.fromRGBO(246, 246, 246, 1),
           padding: EdgeInsets.all(ScreenAdapter.width(26)),
-          child: MasonryGridView.count(
-              crossAxisCount: 2, //2列
-              mainAxisSpacing: ScreenAdapter.width(26),//水平方向间距
-              crossAxisSpacing: ScreenAdapter.width(26),//垂直方向间距,
-              itemCount: 20,
-              shrinkWrap: true, ///收缩，让子元素自适应
-              physics: const NeverScrollableScrollPhysics(),///禁止滑动
-              itemBuilder: (context, index){
-                // var height=50+150*Random().nextDouble(); //0.0-1.0
-                return Container(
-                  // height: height,
-                  padding: EdgeInsets.all(ScreenAdapter.width(20)),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    // border: Border.all(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                        child: Image.network("https://xiaomi.itying.com/public/upload/0AY3Cpw19ZQ2AkYjbA1tQY-Z.png_200x200.png", fit: BoxFit.cover,),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                        width: double.infinity,
-                        child: Text("小米电话手表", textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(36), fontWeight: FontWeight.bold),),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                        width: double.infinity,
-                        child: Text("超长待机", textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                        width: double.infinity,
-                        child: Text("￥2122", textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32), fontWeight: FontWeight.bold),),
-                      ),
-                    ],
-                  ),
-                );
-              },
-          ),
+          child: Obx(()=>MasonryGridView.count(
+            crossAxisCount: 2, //2列
+            mainAxisSpacing: ScreenAdapter.width(26),//水平方向间距
+            crossAxisSpacing: ScreenAdapter.width(26),//垂直方向间距,
+            itemCount: controller.popularProductList.length,
+            shrinkWrap: true, ///收缩，让子元素自适应
+            physics: const NeverScrollableScrollPhysics(),///禁止滑动
+            itemBuilder: (context, index){
+              // var height=50+150*Random().nextDouble(); //0.0-1.0
+              var item = controller.popularProductList[index];
+              String picUrl = "https://xiaomi.itying.com/${item.pic}";
+              picUrl = picUrl.replaceAll("\\", "/");
+              return Container(
+                // height: height,
+                padding: EdgeInsets.all(ScreenAdapter.width(20)),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  // border: Border.all(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                      child: Image.network(picUrl, fit: BoxFit.cover,),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                      width: double.infinity,
+                      child: Text(item.title, textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                      width: double.infinity,
+                      child: Text(item.subTitle, textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                      width: double.infinity,
+                      child: Text("￥${item.price}", textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32), fontWeight: FontWeight.bold),),
+                    ),
+                  ],
+                ),
+              );
+            },
+          )),
         ),
       ],
     );
