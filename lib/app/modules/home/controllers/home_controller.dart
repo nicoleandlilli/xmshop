@@ -14,6 +14,7 @@ class HomeController extends GetxController{
 
   RxList<FocusModelItem> swiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<CategoryModelItem> categoryList=<CategoryModelItem> [].obs;   //注意，需要定义成响应式数据
+  RxList<FocusModelItem> bestSellingSwiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
 
   @override
   void onInit() {
@@ -21,6 +22,7 @@ class HomeController extends GetxController{
     addScrollControllerListener();
     getFocusData();
     getCategoryData();
+    getBestSellingData();
   }
 
   void addScrollControllerListener() {
@@ -43,6 +45,22 @@ class HomeController extends GetxController{
   });
   }
 
+  ///获取热销甄选的轮播图
+  getBestSellingData() async{
+    try {
+      var response = await Dio().get("https://miapp.itying.com/api/focus?position=2");
+      print(response);
+      // swiperList.value = response.data["result"];
+      var focus = FocusModel.fromJson(response.data);
+      bestSellingSwiperList.value = focus.result;
+      update();
+    }catch(e){
+      print("home controller exception.................$e");
+    }
+  }
+
+
+  ///获取分类广告轮播图中的数据
   getCategoryData() async{
     try {
       var response = await Dio().get("https://miapp.itying.com/api/bestCate");

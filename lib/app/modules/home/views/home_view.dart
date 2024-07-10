@@ -83,13 +83,14 @@ class HomeView extends GetView<HomeController>{
                   child: SizedBox(
                     // height: ScreenAdapter.height(738),
                     height: ScreenAdapter.height(680),
-                    child:  Swiper(
+                    child: Obx(()=> Swiper(
                       itemBuilder: (context, index){
-                        String picUrl = "https://itying.com/images/b_focus0${index+1}.png";
+                        // String picUrl = "https://itying.com/images/b_focus0${index+1}.png";
+                        String picUrl = "https://xiaomi.itying.com/${controller.bestSellingSwiperList[index].pic}";
                         picUrl = picUrl.replaceAll("\\", "/");
                         return Image.network(picUrl,fit: BoxFit.fill,);
                       },
-                      itemCount: controller.swiperList.value.length,
+                      itemCount: controller.bestSellingSwiperList.value.length,
                       pagination: SwiperPagination(
                         builder: SwiperCustomPagination(
                             builder: (BuildContext context, SwiperPluginConfig config){
@@ -112,7 +113,7 @@ class HomeView extends GetView<HomeController>{
                       autoplay: true,
                       loop: true,
                       // duration: 3000,
-                    ),
+                    )),
               )),
               SizedBox(width: ScreenAdapter.width(20),),
               Expanded(
