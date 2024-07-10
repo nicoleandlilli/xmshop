@@ -30,26 +30,48 @@ class HomeView extends GetView<HomeController>{
   ///内容区域
   Widget _buildBody() {
     return Positioned(
-              // top: -55,
-              top: -60,
-              left: 0,
-              right: 0,
-              // bottom: 0,
-              child: ListView(
-                controller: controller.scrollController,
-                shrinkWrap: true,
+      // top: -55,
+      top: -60,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      child: ListView(
+        controller: controller.scrollController,
+        // shrinkWrap: true,
+        children: [
+          _buildSwiperView(),
+          _buildBanner(),
+          _buildCategory(),
+          _buildHotSellingBanner(),
+          _buildBestSelling(),
 
-                children: [
-                  _buildSwiperView(),
-                  _buildBanner(),
-                  _buildCategory(),
-                  _buildHotSellingBanner(),
-                  _buildBestSelling(),
+
+        ],
+      ),
+    );
 
 
-                ],
-              ),
-            );
+    // return Positioned(
+    //           // top: -55,
+    //           top: -60,
+    //           left: 0,
+    //           right: 0,
+    //           // bottom: 0,
+    //           child: ListView(
+    //             controller: controller.scrollController,
+    //             // shrinkWrap: true,
+    //
+    //             children: [
+    //               _buildSwiperView(),
+    //               // _buildBanner(),
+    //               // _buildCategory(),
+    //               // _buildHotSellingBanner(),
+    //               // _buildBestSelling(),
+    //
+    //
+    //             ],
+    //           ),
+    //         );
   }
 
 
