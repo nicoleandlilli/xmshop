@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +9,8 @@ import 'package:xmeshop/app/modules/home/controllers/home_controller.dart';
 import 'package:xmeshop/app/services/kee_alive_wrapper.dart';
 import 'package:xmeshop/app/services/ncFonts.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 ///请求转换对象地址： https://autocode.icu/jsontodart
 class HomeView extends GetView<HomeController>{
   const HomeView({super.key});
@@ -44,36 +48,60 @@ class HomeView extends GetView<HomeController>{
           _buildCategory(),
           _buildHotSellingBanner(),
           _buildBestSelling(),
-
-
+          _buildBestGoods(),
+          const SizedBox(
+            height: 100,
+          ),
         ],
       ),
     );
 
-
-    // return Positioned(
-    //           // top: -55,
-    //           top: -60,
-    //           left: 0,
-    //           right: 0,
-    //           // bottom: 0,
-    //           child: ListView(
-    //             controller: controller.scrollController,
-    //             // shrinkWrap: true,
-    //
-    //             children: [
-    //               _buildSwiperView(),
-    //               // _buildBanner(),
-    //               // _buildCategory(),
-    //               // _buildHotSellingBanner(),
-    //               // _buildBestSelling(),
-    //
-    //
-    //             ],
-    //           ),
-    //         );
   }
 
+  ///创建热销产品
+  Widget _buildBestGoods(){
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(ScreenAdapter.width(30), ScreenAdapter.height(40), ScreenAdapter.width(30), ScreenAdapter.height(20)),
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("省心优惠", style: TextStyle(
+                fontSize: ScreenAdapter.fontSize(46),
+              ),),
+              Text("全部优惠>", style: TextStyle(
+                fontSize: ScreenAdapter.fontSize(38),
+              ),),
+            ],
+          ),
+        ),
+        Container(
+          color: const Color.fromRGBO(246, 246, 246, 1),
+          padding: EdgeInsets.all(ScreenAdapter.width(26)),
+          child: MasonryGridView.count(
+              crossAxisCount: 2, //2列
+              mainAxisSpacing: ScreenAdapter.width(26),//水平方向间距
+              crossAxisSpacing: ScreenAdapter.width(26),//垂直方向间距,
+              itemCount: 20,
+              shrinkWrap: true, ///收缩，让子元素自适应
+              physics: const NeverScrollableScrollPhysics(),///禁止滑动
+              itemBuilder: (context, index){
+                var height=50+150*Random().nextDouble(); //0.0-1.0
+                return Container(
+                  height: height,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                );
+              },
+          ),
+        ),
+      ],
+    );
+  }
 
   ///创建热销甄选
   Widget _buildBestSelling(){
