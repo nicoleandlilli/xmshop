@@ -41,7 +41,7 @@ class HomeView extends GetView<HomeController>{
                 children: [
                   _buildSwiperView(),
                   _buildBanner(),
-                  _buildClassifiedView(),
+                  _buildCategory(),
                 ],
               ),
             );
@@ -101,25 +101,25 @@ class HomeView extends GetView<HomeController>{
             );
   }
 
-  Widget _buildClassifiedView() {
-    String picUrl = "https://miapp.itying.com/public/upload/NssHlEUvoWU36EpuF3S1URMB.png";
-
+  Widget _buildCategory() {
     return Container(
       width: ScreenAdapter.width(1080),
       // height: ScreenAdapter.height(400),
       height: ScreenAdapter.height(425),
-      color: Colors.red,
-      child: Swiper(
+      child: Obx(()=>Swiper(
         itemBuilder: (context, index){
           return GridView.builder(
               itemCount: 10,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 5,
                 // crossAxisSpacing: ScreenAdapter.width(20),
                 // mainAxisSpacing: ScreenAdapter.height(20),
 
               ),
-              itemBuilder: (context, index){
+              itemBuilder: (context, i){
+                // String picUrl = "https://miapp.itying.com/public/upload/NssHlEUvoWU36EpuF3S1URMB.png";
+                String picUrl = "https://miapp.itying.com/${controller.categoryList[index*10+i].pic}";
+                picUrl = picUrl.replaceAll("\\", "/");
                 return Column(
                   children: [
                     Container(
@@ -129,35 +129,35 @@ class HomeView extends GetView<HomeController>{
                       child: Image.network(picUrl, fit: BoxFit.fitHeight,),
                     ),
                     // Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(4), 0, 0), child: Text("手机", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),))
-                    Text("手机", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
+                    Text(controller.categoryList[index*10+i].title, style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
                   ],
                 );
               });
         },
-        itemCount: 2,
+        itemCount: controller.categoryList.length~/10,   //取整
         pagination: SwiperPagination(
           margin: const EdgeInsets.all(0.0),
           // builder: SwiperPagination.rect,
           builder: SwiperCustomPagination(
-            builder: (BuildContext context, SwiperPluginConfig config){
-              return ConstrainedBox(
+              builder: (BuildContext context, SwiperPluginConfig config){
+                return ConstrainedBox(
                   constraints: BoxConstraints.expand(height:  ScreenAdapter.height(20)),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: Align(
-                      alignment: Alignment.center,
-                      child: const RectSwiperPaginationBuilder(
-                        color: Colors.black12,
-                        activeColor: Colors.black54,
-                      ).build(context, config),
-                    )),
-                  ],
-                ),
-              );
-          }),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(child: Align(
+                        alignment: Alignment.center,
+                        child: const RectSwiperPaginationBuilder(
+                          color: Colors.black12,
+                          activeColor: Colors.black54,
+                        ).build(context, config),
+                      )),
+                    ],
+                  ),
+                );
+              }),
         ),
         // duration: 3000,
-      ),
+      )),
     );
   }
 

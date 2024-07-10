@@ -1,3 +1,7 @@
+///自动生成对象的类：
+
+/// https://autocode.icu/jsontodart
+
 class FocusModel {
   FocusModel({
     required this.result,
