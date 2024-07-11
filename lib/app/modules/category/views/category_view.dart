@@ -23,15 +23,15 @@ class CategoryView extends GetView<CategoryController>{
   Widget _buildBody() {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: ScreenAdapter.width(280),
           height: double.infinity,
           child: ListView.builder(
             itemCount: 20,
               itemBuilder: (context, index){
-                return Container(
+                return SizedBox(
                   width: double.infinity,
-                  height: ScreenAdapter.height(140),
+                  height: ScreenAdapter.height(180),
                   child: Obx(()=>InkWell(
                     onTap: (){
                       controller.changeIndex(index);
@@ -58,9 +58,31 @@ class CategoryView extends GetView<CategoryController>{
               },
           ),
         ),
-        Expanded(child: Container(
+        Expanded(child: SizedBox(
           height: double.infinity,
-          color: Colors.black,
+          child: GridView.builder(
+            itemCount: 35,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: ScreenAdapter.width(40),
+              mainAxisSpacing: ScreenAdapter.height(40),
+              childAspectRatio: 240/340
+            ),
+            itemBuilder: ((context, index){
+              return Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    child: Image.network("https://xiaomi.itying.com/public/upload/RQXtJTh1WbzxpSbLF-vjDYTo.png",fit: BoxFit.fitHeight,),
+                  ),
+                  Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
+                  child: Text("手机",style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
+                  ),
+                ],
+              );
+            }),
+          ),
         ),),
       ],
     );
