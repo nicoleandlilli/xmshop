@@ -1,10 +1,12 @@
-import 'package:dio/dio.dart';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/models/category_model.dart';
 import 'package:xmeshop/app/models/focus_model.dart';
 import 'package:xmeshop/app/models/plist_model.dart';
+import 'package:xmeshop/app/services/http_client.dart';
 ///自动生成对象的类：
 
 /// https://autocode.icu/jsontodart
@@ -19,6 +21,7 @@ class HomeController extends GetxController{
   RxList<FocusModelItem> bestSellingSwiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<PListModelItem> bestSellingPList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<PListModelItem> popularProductList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
+  HttpClient httpClient = HttpClient();
 
   @override
   void onInit() {
@@ -58,15 +61,12 @@ class HomeController extends GetxController{
   ///获取热销甄选下的热门商品
   getPopularProductListData() async{
     try {
-      var response = await Dio().get("https://miapp.itying.com/api/plist?is_best=1");
-      // var response = await Dio().get("https://miapp.itying.com/api/plist");
-      if (kDebugMode) {
-        print(response);
+      var response = await httpClient.get("/api/plist?is_best=1");
+      if(response!=null) {
+        var focus = PListModel.fromJson(response.data);
+        popularProductList.value = focus.result;
+        update();
       }
-      // swiperList.value = response.data["result"];
-      var focus = PListModel.fromJson(response.data);
-      popularProductList.value = focus.result;
-      update();
     }catch(e){
       if (kDebugMode) {
         print("home controller exception.................$e");
@@ -78,15 +78,12 @@ class HomeController extends GetxController{
   ///获取热销甄选右侧的商品数据
   getBestSellingPlistData() async{
     try {
-      var response = await Dio().get("https://miapp.itying.com/api/plist?is_hot=1\$pageSize=3");
-      // var response = await Dio().get("https://miapp.itying.com/api/plist");
-      if (kDebugMode) {
-        print(response);
+      var response = await httpClient.get("/api/plist?is_hot=1\$pageSize=3");
+      if(response!=null) {
+        var focus = PListModel.fromJson(response.data);
+        bestSellingPList.value = focus.result;
+        update();
       }
-      // swiperList.value = response.data["result"];
-      var focus = PListModel.fromJson(response.data);
-      bestSellingPList.value = focus.result;
-      update();
     }catch(e){
       if (kDebugMode) {
         print("home controller exception.................$e");
@@ -98,14 +95,12 @@ class HomeController extends GetxController{
   ///获取热销甄选的轮播图
   getBestSellingData() async{
     try {
-      var response = await Dio().get("https://miapp.itying.com/api/focus?position=2");
-      if (kDebugMode) {
-        print(response);
-      }
-      // swiperList.value = response.data["result"];
-      var focus = FocusModel.fromJson(response.data);
-      bestSellingSwiperList.value = focus.result;
-      update();
+      var response = await httpClient.get("/api/focus?position=2");
+     if(response!=null) {
+       var focus = FocusModel.fromJson(response.data);
+       bestSellingSwiperList.value = focus.result;
+       update();
+     }
     }catch(e){
       if (kDebugMode) {
         print("home controller exception.................$e");
@@ -117,13 +112,12 @@ class HomeController extends GetxController{
   ///获取分类广告轮播图中的数据
   getCategoryData() async{
     try {
-      var response = await Dio().get("https://miapp.itying.com/api/bestCate");
-      if (kDebugMode) {
-        print(response);
+      var response = await httpClient.get("/api/bestCate");
+      if(response!=null) {
+        var categories = CategoryModel.fromJson(response.data);
+        categoryList.value = categories.result;
+        update();
       }
-      var categories = CategoryModel.fromJson(response.data);
-      categoryList.value = categories.result;
-      update();
     }catch(e){
       if (kDebugMode) {
         print("home controller exception.................$e");
@@ -133,14 +127,12 @@ class HomeController extends GetxController{
 
   getFocusData() async{
     try {
-      var response = await Dio().get("https://miapp.itying.com/api/focus");
-      if (kDebugMode) {
-        print(response);
+      var response = await httpClient.get("/api/focus");
+      if(response!=null) {
+        var focus = FocusModel.fromJson(response.data);
+        swiperList.value = focus.result;
+        update();
       }
-      // swiperList.value = response.data["result"];
-      var focus = FocusModel.fromJson(response.data);
-      swiperList.value = focus.result;
-      update();
     }catch(e){
       if (kDebugMode) {
         print("home controller exception.................$e");

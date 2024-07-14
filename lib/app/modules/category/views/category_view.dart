@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/category/controllers/category_controller.dart';
+import 'package:xmeshop/app/services/http_client.dart';
 
 import '../../../services/kee_alive_wrapper.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
@@ -76,14 +77,12 @@ class CategoryView extends GetView<CategoryController>{
             childAspectRatio: 240/340
         ),
         itemBuilder: ((context, index){
-          String picUrl = "https://miapp.itying.com/${controller.rightCategoryList[index].pic}";
-          picUrl = picUrl.replaceAll("\\", "/");
           return Column(
             children: [
               Container(
                 alignment: Alignment.center,
                 width: double.infinity,
-                child: Image.network(picUrl,fit: BoxFit.fitHeight,),
+                child: Image.network(HttpClient.replaceUri(controller.rightCategoryList[index].pic),fit: BoxFit.fitHeight,),
               ),
               Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
                 child: Text(controller.rightCategoryList[index].title,style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
