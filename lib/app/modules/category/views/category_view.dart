@@ -66,7 +66,8 @@ class CategoryView extends GetView<CategoryController>{
   }
 
   Widget _buildRightCategory(){
-    return Expanded(child: SizedBox(
+    return Expanded(child: Container(
+      color:Colors.white,
       height: double.infinity,
       child: Obx(()=>GridView.builder(
         itemCount: controller.rightCategoryList.length,
@@ -77,17 +78,23 @@ class CategoryView extends GetView<CategoryController>{
             childAspectRatio: 240/340
         ),
         itemBuilder: ((context, index){
-          return Column(
-            children: [
-              Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                child: Image.network(HttpClient.replaceUri(controller.rightCategoryList[index].pic),fit: BoxFit.fitHeight,),
-              ),
-              Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
-                child: Text(controller.rightCategoryList[index].title,style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
-              ),
-            ],
+          return InkWell(
+            onTap: (){
+              Get.toNamed("/product-list",
+                arguments: {"pid": controller.rightCategoryList[index].id});
+            },
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  child: Image.network(HttpClient.replaceUri(controller.rightCategoryList[index].pic),fit: BoxFit.fitHeight,),
+                ),
+                Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
+                  child: Text(controller.rightCategoryList[index].title,style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
+                ),
+              ],
+            ),
           );
         }),
       )),

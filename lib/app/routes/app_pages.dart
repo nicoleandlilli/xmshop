@@ -1,5 +1,7 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:xmeshop/app/modules/productList/bindings/product_list_binding.dart';
+import 'package:xmeshop/app/modules/productList/views/product_list_view.dart';
 
 import '../modules/tabs/bingdings/tabs_binding.dart';
 import '../modules/tabs/views/tabs_view.dart';
@@ -18,11 +20,11 @@ class AppPages {
     ),
 
 
-    // GetPage(
-    //   name: _Paths.HOME,
-    //   page: ()=>const HomeView(),
-    //   binding: HomeBinding(),
-    // ),
+    GetPage(
+      name: Paths.productList,
+      page: ()=>const ProductListView(),
+      binding: ProductListBinding(),
+    ),
 
     // GetPage(
     //   name: _Paths.CATEGORY,

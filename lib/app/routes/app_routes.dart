@@ -9,5 +9,6 @@ abstract class Routes{
 abstract class Paths {
   Paths._();
   static const tabs = '/tabs';
+  static const productList = '/product-list';
 }
 
