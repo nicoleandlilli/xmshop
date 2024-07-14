@@ -67,8 +67,8 @@ class ProductListController extends GetxController{
       //改变排序  sort=price_-1     sort=price_1
       sort =
       "${subHeaderList[id - 1]["fileds"]}_${subHeaderList[id - 1]["sort"]}";
-      // //改变状态
-      // subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
+      //改变状态
+      subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
       // //作用更新状态
       // subHeaderListSort.value=subHeaderList[id - 1]["sort"];
       //重置page
