@@ -15,6 +15,13 @@ class ProductListView extends GetView<ProductListController>{
   Widget build(BuildContext context) {
     return KeepAliveWrapper(
         child: Scaffold(
+          key: controller.scaffoldGlobalKey,
+          endDrawer: const Drawer(
+            child: DrawerHeader(
+                child:  Text("右侧筛选"),
+            ),
+          ),
+
           backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
           appBar: _buildAppBar(),
           body: _buildBody(),
@@ -193,6 +200,7 @@ class ProductListView extends GetView<ProductListController>{
                 ),
                 onTap: () {
                   //注意：新版本中ScaffoldState? 为可空类型 注意判断
+                  controller.scaffoldGlobalKey.currentState!.openEndDrawer();
                 },
               ),
             ),

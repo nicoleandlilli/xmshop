@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/services/http_client.dart';
 
@@ -14,6 +15,8 @@ class ProductListController extends GetxController{
   RxList<PListModelItem> pList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
   HttpClient httpClient = HttpClient();
   ScrollController scrollController=ScrollController();
+  GlobalKey<ScaffoldState> scaffoldGlobalKey=GlobalKey<ScaffoldState>();
+
 
   @override
   void onInit() {
