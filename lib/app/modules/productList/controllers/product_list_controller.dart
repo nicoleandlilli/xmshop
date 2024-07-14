@@ -34,6 +34,8 @@ class ProductListController extends GetxController{
 
   //二级导航选中判断
   RxInt selectHeaderId = 1.obs;
+  //主要解决的问题是排序箭头无法更新
+  RxInt subHeaderListSort=0.obs;
 
 
   @override
@@ -70,7 +72,7 @@ class ProductListController extends GetxController{
       //改变状态
       subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
       // //作用更新状态
-      // subHeaderListSort.value=subHeaderList[id - 1]["sort"];
+      subHeaderListSort.value=subHeaderList[id - 1]["sort"];
       //重置page
       page = 1;
       //重置数据

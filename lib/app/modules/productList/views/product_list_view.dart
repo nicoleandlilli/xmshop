@@ -147,21 +147,27 @@ class ProductListView extends GetView<ProductListController>{
           children: controller.subHeaderList.map((value){
             return  Expanded(
               flex: 1,
-              child: InkWell(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                      ScreenAdapter.height(16)),
-                  child: Text(
-                    "${value["title"]}",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: controller.selectHeaderId==value["id"]?Colors.red:Colors.black,
-                        fontSize: ScreenAdapter.fontSize(32)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
+                          ScreenAdapter.height(16)),
+                      child: Text(
+                        "${value["title"]}",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: controller.selectHeaderId==value["id"]?Colors.red:Colors.black,
+                            fontSize: ScreenAdapter.fontSize(32)),
+                      ),
+                    ),
+                    onTap: () {
+                      controller.subHeaderChange(value["id"]);
+                    },
                   ),
-                ),
-                onTap: () {
-                  controller.subHeaderChange(value["id"]);
-                },
+                  _showIcon(value["id"]),
+                ],
               ),
             );
           }).toList(),
@@ -230,6 +236,20 @@ class ProductListView extends GetView<ProductListController>{
         ),
       )),
     );
+  }
+
+  //自定义箭头组件
+  Widget _showIcon(id) {
+    //controller.subHeaderListSort 作用 : 响应式状态  为了改变状态
+    if (id == 2 || id == 3 || controller.subHeaderListSort.value==1 || controller.subHeaderListSort.value==-1) {
+      if (controller.subHeaderList[id - 1]["sort"] == 1) {
+        return const Icon(Icons.arrow_drop_down, color: Colors.black54);
+      } else {
+        return const Icon(Icons.arrow_drop_up, color: Colors.black54);
+      }
+    } else {
+      return const Text("");
+    }
   }
 
   AppBar _buildAppBar() {
