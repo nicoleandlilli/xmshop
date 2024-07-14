@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/category/controllers/category_controller.dart';
 
@@ -26,64 +25,9 @@ class CategoryView extends GetView<CategoryController>{
         SizedBox(
           width: ScreenAdapter.width(280),
           height: double.infinity,
-          child: ListView.builder(
-            itemCount: 20,
-              itemBuilder: (context, index){
-                return SizedBox(
-                  width: double.infinity,
-                  height: ScreenAdapter.height(180),
-                  child: Obx(()=>InkWell(
-                    onTap: (){
-                      controller.changeIndex(index);
-                    },
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child:Container(
-                            width: ScreenAdapter.width(10),
-                            height: ScreenAdapter.height(46),
-                            color: controller.selectIndex.value==index?Colors.red:Colors.white,
-                          ),
-                        ),
-                        Center(
-                          child: Text("第$index个"),
-                        ),
-
-
-                      ],
-                    ),
-                  )),
-                );
-              },
-          ),
+          child: Obx(()=>_buildLeftCategory()),
         ),
-        Expanded(child: SizedBox(
-          height: double.infinity,
-          child: GridView.builder(
-            itemCount: 35,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: ScreenAdapter.width(40),
-              mainAxisSpacing: ScreenAdapter.height(40),
-              childAspectRatio: 240/340
-            ),
-            itemBuilder: ((context, index){
-              return Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    child: Image.network("https://xiaomi.itying.com/public/upload/RQXtJTh1WbzxpSbLF-vjDYTo.png",fit: BoxFit.fitHeight,),
-                  ),
-                  Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
-                  child: Text("手机",style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
-                  ),
-                ],
-              );
-            }),
-          ),
-        ),),
+        _buildRightCategory(),
       ],
     );
   }
@@ -118,6 +62,75 @@ class CategoryView extends GetView<CategoryController>{
           backgroundColor: Colors.white,
           elevation: 0,
         );
+  }
+
+  Widget _buildRightCategory(){
+    return Expanded(child: SizedBox(
+      height: double.infinity,
+      child: Obx(()=>GridView.builder(
+        itemCount: controller.rightCategoryList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: ScreenAdapter.width(40),
+            mainAxisSpacing: ScreenAdapter.height(40),
+            childAspectRatio: 240/340
+        ),
+        itemBuilder: ((context, index){
+          String picUrl = "https://miapp.itying.com/${controller.rightCategoryList[index].pic}";
+          picUrl = picUrl.replaceAll("\\", "/");
+          return Column(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                child: Image.network(picUrl,fit: BoxFit.fitHeight,),
+              ),
+              Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
+                child: Text(controller.rightCategoryList[index].title,style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
+              ),
+            ],
+          );
+        }),
+      )),
+    ),);
+  }
+
+  Widget _buildLeftCategory(){
+    return ListView.builder(
+      itemCount:  controller.leftCategoryList.length,
+      itemBuilder: (context, index){
+        return SizedBox(
+          width: double.infinity,
+          height: ScreenAdapter.height(180),
+          child: Obx(()=>InkWell(
+            onTap: (){
+              controller.changeIndex(index);
+            },
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child:Container(
+                    width: ScreenAdapter.width(10),
+                    height: ScreenAdapter.height(46),
+                    color: controller.selectIndex.value==index?Colors.red:Colors.white,
+                  ),
+                ),
+                Center(
+                  child: Text(controller.leftCategoryList[index].title,
+                  style: TextStyle(
+                      fontSize: ScreenAdapter.fontSize(36),
+                      fontWeight: controller.selectIndex.value==index?FontWeight.bold:FontWeight.normal),),
+                  // child: Text("第$index个${}"),
+                ),
+
+
+              ],
+            ),
+          )),
+        );
+      },
+    );
   }
 
 }

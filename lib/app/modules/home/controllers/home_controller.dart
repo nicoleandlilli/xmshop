@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/models/category_model.dart';
 import 'package:xmeshop/app/models/focus_model.dart';
@@ -36,7 +37,9 @@ class HomeController extends GetxController{
       if(!flag.value) {
         flag.value = true;
         update();
-        print("scrollController.position.pixels>10........................");
+        if (kDebugMode) {
+          print("scrollController.position.pixels>10........................");
+        }
       }
     }
 
@@ -44,7 +47,9 @@ class HomeController extends GetxController{
       if(flag.value) {
         flag.value = false;
         update();
-        print("scrollController.position.pixels<10...............");
+        if (kDebugMode) {
+          print("scrollController.position.pixels<10...............");
+        }
       }
     }
   });
@@ -55,13 +60,17 @@ class HomeController extends GetxController{
     try {
       var response = await Dio().get("https://miapp.itying.com/api/plist?is_best=1");
       // var response = await Dio().get("https://miapp.itying.com/api/plist");
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       // swiperList.value = response.data["result"];
       var focus = PListModel.fromJson(response.data);
       popularProductList.value = focus.result;
       update();
     }catch(e){
-      print("home controller exception.................$e");
+      if (kDebugMode) {
+        print("home controller exception.................$e");
+      }
     }
   }
 
@@ -71,13 +80,17 @@ class HomeController extends GetxController{
     try {
       var response = await Dio().get("https://miapp.itying.com/api/plist?is_hot=1\$pageSize=3");
       // var response = await Dio().get("https://miapp.itying.com/api/plist");
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       // swiperList.value = response.data["result"];
       var focus = PListModel.fromJson(response.data);
       bestSellingPList.value = focus.result;
       update();
     }catch(e){
-      print("home controller exception.................$e");
+      if (kDebugMode) {
+        print("home controller exception.................$e");
+      }
     }
   }
 
@@ -86,13 +99,17 @@ class HomeController extends GetxController{
   getBestSellingData() async{
     try {
       var response = await Dio().get("https://miapp.itying.com/api/focus?position=2");
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       // swiperList.value = response.data["result"];
       var focus = FocusModel.fromJson(response.data);
       bestSellingSwiperList.value = focus.result;
       update();
     }catch(e){
-      print("home controller exception.................$e");
+      if (kDebugMode) {
+        print("home controller exception.................$e");
+      }
     }
   }
 
@@ -101,25 +118,33 @@ class HomeController extends GetxController{
   getCategoryData() async{
     try {
       var response = await Dio().get("https://miapp.itying.com/api/bestCate");
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       var categories = CategoryModel.fromJson(response.data);
       categoryList.value = categories.result;
       update();
     }catch(e){
-      print("home controller exception.................$e");
+      if (kDebugMode) {
+        print("home controller exception.................$e");
+      }
     }
   }
 
   getFocusData() async{
     try {
       var response = await Dio().get("https://miapp.itying.com/api/focus");
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       // swiperList.value = response.data["result"];
       var focus = FocusModel.fromJson(response.data);
       swiperList.value = focus.result;
       update();
     }catch(e){
-      print("home controller exception.................$e");
+      if (kDebugMode) {
+        print("home controller exception.................$e");
+      }
     }
   }
 

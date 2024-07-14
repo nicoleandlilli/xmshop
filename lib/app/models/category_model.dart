@@ -27,7 +27,7 @@ class CategoryModelItem {
     required this.pic,
     required this.pid,
     required this.sort,
-    required this.isBest,
+    this.isBest,
     required this.goProduct,
     required this.productId,
   });
@@ -37,7 +37,7 @@ class CategoryModelItem {
   late final String pic;
   late final String pid;
   late final int sort;
-  late final int isBest;
+  int? isBest;
   late final int goProduct;
   late final String productId;
 
