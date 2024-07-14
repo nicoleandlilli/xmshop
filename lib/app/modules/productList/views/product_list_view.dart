@@ -131,82 +131,105 @@ class ProductListView extends GetView<ProductListController>{
       left: 0,
       right: 0,
       top: 0,
-      child: Container(
+      child: Obx(()=>Container(
         height: ScreenAdapter.height(120),
         width: ScreenAdapter.width(1080),
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            bottom: BorderSide(
-              width: ScreenAdapter.height(2),
-              color: const Color.fromRGBO(233, 233, 233, 0.9),
+            color: Colors.white,
+            border: Border(
+                bottom: BorderSide(
+                  width: ScreenAdapter.height(2),
+                  color: const Color.fromRGBO(233, 233, 233, 0.9),
+                )
             )
-          )
         ),
         child: Row(
-          children: [
-            Expanded(
+          children: controller.subHeaderList.map((value){
+            return  Expanded(
               flex: 1,
               child: InkWell(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
                       ScreenAdapter.height(16)),
                   child: Text(
-                    "综合",
+                    "${value["title"]}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.red,
+                        color: controller.selectHeaderId==value["id"]?Colors.red:Colors.black,
                         fontSize: ScreenAdapter.fontSize(32)),
                   ),
                 ),
-                onTap: () {},
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: InkWell(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                      ScreenAdapter.height(16)),
-                  child: Text("销量",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
-                ),
-                onTap: () {},
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: InkWell(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                      ScreenAdapter.height(16)),
-                  child: Text("价格",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
-                ),
-                onTap: () {},
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: InkWell(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
-                      ScreenAdapter.height(16)),
-                  child: Text("筛选",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
-                ),
                 onTap: () {
-                  //注意：新版本中ScaffoldState? 为可空类型 注意判断
-                  controller.scaffoldGlobalKey.currentState!.openEndDrawer();
+                  controller.subHeaderChange(value["id"]);
                 },
               ),
-            ),
-          ],
+            );
+          }).toList(),
+
+          // children: [
+          //   Expanded(
+          //     flex: 1,
+          //     child: InkWell(
+          //       child: Padding(
+          //         padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
+          //             ScreenAdapter.height(16)),
+          //         child: Text(
+          //           "综合",
+          //           textAlign: TextAlign.center,
+          //           style: TextStyle(
+          //               color: Colors.red,
+          //               fontSize: ScreenAdapter.fontSize(32)),
+          //         ),
+          //       ),
+          //       onTap: () {},
+          //     ),
+          //   ),
+          //   Expanded(
+          //     flex: 1,
+          //     child: InkWell(
+          //       child: Padding(
+          //         padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
+          //             ScreenAdapter.height(16)),
+          //         child: Text("销量",
+          //             textAlign: TextAlign.center,
+          //             style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
+          //       ),
+          //       onTap: () {},
+          //     ),
+          //   ),
+          //   Expanded(
+          //     flex: 1,
+          //     child: InkWell(
+          //       child: Padding(
+          //         padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
+          //             ScreenAdapter.height(16)),
+          //         child: Text("价格",
+          //             textAlign: TextAlign.center,
+          //             style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
+          //       ),
+          //       onTap: () {},
+          //     ),
+          //   ),
+          //   Expanded(
+          //     flex: 1,
+          //     child: InkWell(
+          //       child: Padding(
+          //         padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(16), 0,
+          //             ScreenAdapter.height(16)),
+          //         child: Text("筛选",
+          //             textAlign: TextAlign.center,
+          //             style: TextStyle(fontSize: ScreenAdapter.fontSize(32))),
+          //       ),
+          //       onTap: () {
+          //         //注意：新版本中ScaffoldState? 为可空类型 注意判断
+          //         controller.scaffoldGlobalKey.currentState!.openEndDrawer();
+          //       },
+          //     ),
+          //   ),
+          // ],
         ),
-      ));
+      )),
+    );
   }
 
   AppBar _buildAppBar() {

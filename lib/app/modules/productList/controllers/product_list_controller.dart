@@ -17,6 +17,23 @@ class ProductListController extends GetxController{
   ScrollController scrollController=ScrollController();
   GlobalKey<ScaffoldState> scaffoldGlobalKey=GlobalKey<ScaffoldState>();
 
+  /*二级导航数据*/
+  List subHeaderList = [
+    {
+      "id": 1,
+      "title": "综合",
+      "fileds": "all",
+      "sort":
+      -1, // 排序     升序：price_1     {price:1}        降序：price_-1   {price:-1}
+    },
+    {"id": 2, "title": "销量", "fileds": 'salecount', "sort": -1},
+    {"id": 3, "title": "价格", "fileds": 'price', "sort": -1},
+    {"id": 4, "title": "筛选"}
+  ];
+
+  //二级导航选中判断
+  RxInt selectHeaderId = 1.obs;
+
 
   @override
   void onInit() {
@@ -35,6 +52,35 @@ class ProductListController extends GetxController{
         getPListData();
       }
     });
+  }
+
+  //二级导航改变的时候触发的方法
+  void subHeaderChange(id) {
+    if (id == 4) {
+      selectHeaderId.value = id;
+      scaffoldGlobalKey.currentState!.openEndDrawer();
+      //弹出侧边栏
+    } else {
+      selectHeaderId.value = id;
+
+      // //改变排序  sort=price_-1     sort=price_1
+      // sort =
+      // "${subHeaderList[id - 1]["fileds"]}_${subHeaderList[id - 1]["sort"]}";
+      // //改变状态
+      // subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
+      // //作用更新状态
+      // subHeaderListSort.value=subHeaderList[id - 1]["sort"];
+      // //重置page
+      // page = 1;
+      // //重置数据
+      // plist.value = [];
+      // //重置hasData
+      // hasData.value = true;
+      // //滚动条回到顶部
+      // scrollController.jumpTo(0);
+      // //重新请求接口
+      // getPlistData();
+    }
   }
 
   @override
