@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:xmeshop/app/modules/productList/controllers/product_list_controller.dart';
+import 'package:xmeshop/app/services/http_client.dart';
 
+import '../../../models/plist_model.dart';
 import '../../../services/kee_alive_wrapper.dart';
 import '../../../services/screenAdapter.dart';
 
-class ProductListView extends GetView<ProductListView>{
+class ProductListView extends GetView<ProductListController>{
   const ProductListView({super.key});
 
 
@@ -32,10 +33,11 @@ class ProductListView extends GetView<ProductListView>{
   }
 
   Widget _buildProductList(){
-    return ListView.builder(
+    return Obx(()=>ListView.builder(
         padding: EdgeInsets.fromLTRB(ScreenAdapter.height(26), ScreenAdapter.height(140), ScreenAdapter.height(26), ScreenAdapter.height(26)),
-        itemCount: 10,
+        itemCount: controller.pList.length,
         itemBuilder: (context, index){
+          PListModelItem item = controller.pList[index];
           return Container(
             // color: Colors.white,
             margin: EdgeInsets.only(bottom: ScreenAdapter.height(26)),
@@ -49,8 +51,8 @@ class ProductListView extends GetView<ProductListView>{
                   padding: EdgeInsets.all(ScreenAdapter.width(60)),
                   width: ScreenAdapter.width(400),
                   height: ScreenAdapter.height(460),
-                  // child: Image.network("https://miapp.itying.com/public/upload/5",fit: BoxFit.cover,),
-                  child: Text("11111111111111111"),
+                  child: Image.network("${HttpClient.replaceUri(item.pic)}",fit: BoxFit.cover,),
+                  // child: Text("11111111111111111"),
                 ),
                 Expanded(
                   child: Column(
@@ -58,11 +60,11 @@ class ProductListView extends GetView<ProductListView>{
                     children: [
                       Padding(
                         padding: EdgeInsets.only(bottom: ScreenAdapter.width(20)),
-                        child: Text("Redmi Note", style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
+                        child: Text(item.title, style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: ScreenAdapter.width(20)),
-                        child: Text("内外双旗舰屏幕", style: TextStyle(fontSize: ScreenAdapter.fontSize(34),),),
+                        child: Text(item.subTitle, style: TextStyle(fontSize: ScreenAdapter.fontSize(34),),),
                       ),
                       Container(
                         padding: EdgeInsets.only(bottom: ScreenAdapter.height(20)),
@@ -89,7 +91,7 @@ class ProductListView extends GetView<ProductListView>{
                           ],
                         ),
                       ),
-                      Text("￥388", style: TextStyle(fontSize: ScreenAdapter.fontSize(38), fontWeight: FontWeight.bold),),
+                      Text("￥${item.price}起", style: TextStyle(fontSize: ScreenAdapter.fontSize(38), fontWeight: FontWeight.bold),),
 
                     ],
                   ),
@@ -97,7 +99,7 @@ class ProductListView extends GetView<ProductListView>{
               ],
             ),
           );
-        });
+        }));
   }
 
   Widget _buildSubHeader(){

@@ -54,6 +54,9 @@ class CategoryController extends GetxController{
   getRightCategoryData(String pid) async{
     try {
       var response = await httpClient.get("/api/pcate?pid=$pid");
+      print("分类广告右侧返回的数据是:...........................................$response");
+      print("分类广告右侧返回的pid数据是:...........................................$pid");
+
       if(response!=null) {
         var categories = CategoryModel.fromJson(response.data);
         rightCategoryList.value = categories.result;
