@@ -231,6 +231,9 @@ class ProductListView extends GetView<ProductListController>{
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 0,
+      actions: const[
+        Text(""),
+      ],
     );
   }
 
