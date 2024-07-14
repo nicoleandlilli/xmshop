@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/services/http_client.dart';
@@ -6,16 +7,31 @@ import '../../../models/plist_model.dart';
 
 class ProductListController extends GetxController{
 
-  RxInt page= 1.obs;
+  int page= 1;
   int pageSize = 8;
+  bool flag=true;
+  RxBool hasData = true.obs;
   RxList<PListModelItem> pList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
   HttpClient httpClient = HttpClient();
+  ScrollController scrollController=ScrollController();
 
   @override
   void onInit() {
     super.onInit();
-    // print("get arguments............."+Get.arguments);
     getPListData();
+    initScrollController();
+  }
+
+  //监听滚动条事件
+  void initScrollController(){
+    scrollController.addListener((){
+      // scrollController.position.pixels     滚动条高度
+      // scrollController.position.maxScrollExtent              页面高度
+
+      if(scrollController.position.pixels>(scrollController.position.maxScrollExtent-20)){
+        getPListData();
+      }
+    });
   }
 
   @override
@@ -31,14 +47,29 @@ class ProductListController extends GetxController{
   ///获取热销甄选下的热门商品
   getPListData() async{
     try {
-      var response = await httpClient.get("/api/plist?cid=${Get.arguments["cid"]}&page=${page.value}&pageSize=$pageSize");
-      // var response = await httpClient.get("/api/plist");
-      if(response!=null) {
-        var temp = PListModel.fromJson(response.data);
-        pList.value = temp.result;
-        update();
+      if(flag&hasData.value) {
+        flag=false;
+        var response = await httpClient.get("/api/plist?cid=${Get
+            .arguments["cid"]}&page=$page&pageSize=$pageSize");
+        if (kDebugMode) {
+          print(
+              "................................................................................../api/plist?cid=${Get
+                  .arguments["cid"]}&page=$page&pageSize=$pageSize");
+        }
+        if (response != null) {
+          var temp = PListModel.fromJson(response.data);
+          pList.addAll(temp.result);
+          page++;
+          update();
+          if(temp.result!.length<pageSize){
+            hasData.value=false;
+          }
+        }
+        flag=true;
+
       }
     }catch(e){
+      flag=true;
       if (kDebugMode) {
         print("home controller exception.................$e");
       }

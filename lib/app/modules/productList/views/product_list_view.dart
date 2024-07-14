@@ -10,10 +10,8 @@ import '../../../services/screenAdapter.dart';
 class ProductListView extends GetView<ProductListController>{
   const ProductListView({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    print("get arguments..............${Get.arguments}");
     return KeepAliveWrapper(
         child: Scaffold(
           backgroundColor: const Color.fromRGBO(246, 246, 246, 1),
@@ -34,6 +32,7 @@ class ProductListView extends GetView<ProductListController>{
 
   Widget _buildProductList(){
     return Obx(()=>ListView.builder(
+        controller: controller.scrollController,
         padding: EdgeInsets.fromLTRB(ScreenAdapter.height(26), ScreenAdapter.height(140), ScreenAdapter.height(26), ScreenAdapter.height(26)),
         itemCount: controller.pList.length,
         itemBuilder: (context, index){
