@@ -18,7 +18,13 @@ void main() {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: "Application",
+          //配置主题
+          theme: ThemeData(
+            primarySwatch: Colors.grey
+          ),
           initialRoute: AppPages.initial,
+          //配置ios动画
+          defaultTransition: Transition.rightToLeft,
           getPages: AppPages.routes,
         );
       },
