@@ -11,6 +11,7 @@ class ProductListController extends GetxController{
   int page= 1;
   int pageSize = 8;
   bool flag=true;
+  String sort = "";
   RxBool hasData = true.obs;
   RxList<PListModelItem> pList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
   HttpClient httpClient = HttpClient();
@@ -63,23 +64,23 @@ class ProductListController extends GetxController{
     } else {
       selectHeaderId.value = id;
 
-      // //改变排序  sort=price_-1     sort=price_1
-      // sort =
-      // "${subHeaderList[id - 1]["fileds"]}_${subHeaderList[id - 1]["sort"]}";
+      //改变排序  sort=price_-1     sort=price_1
+      sort =
+      "${subHeaderList[id - 1]["fileds"]}_${subHeaderList[id - 1]["sort"]}";
       // //改变状态
       // subHeaderList[id - 1]["sort"]=subHeaderList[id - 1]["sort"]*-1;
       // //作用更新状态
       // subHeaderListSort.value=subHeaderList[id - 1]["sort"];
-      // //重置page
-      // page = 1;
-      // //重置数据
-      // plist.value = [];
-      // //重置hasData
-      // hasData.value = true;
-      // //滚动条回到顶部
-      // scrollController.jumpTo(0);
-      // //重新请求接口
-      // getPlistData();
+      //重置page
+      page = 1;
+      //重置数据
+      pList.value = [];
+      //重置hasData
+      hasData.value = true;
+      //滚动条回到顶部
+      scrollController.jumpTo(0);
+      //重新请求接口
+      getPListData();
     }
   }
 
@@ -99,11 +100,11 @@ class ProductListController extends GetxController{
       if(flag&hasData.value) {
         flag=false;
         var response = await httpClient.get("/api/plist?cid=${Get
-            .arguments["cid"]}&page=$page&pageSize=$pageSize");
+            .arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
         if (kDebugMode) {
           print(
               "................................................................................../api/plist?cid=${Get
-                  .arguments["cid"]}&page=$page&pageSize=$pageSize");
+                  .arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
         }
         if (response != null) {
           var temp = PListModel.fromJson(response.data);
