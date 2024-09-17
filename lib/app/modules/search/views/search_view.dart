@@ -47,8 +47,348 @@ class SearchView extends GetView{
         ],
         elevation: 0,
       ),
-      body: Center(
-        child:  Text("GiveView"),
+      body: ListView(
+        padding: EdgeInsets.all(ScreenAdapter.height(20)),
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: ScreenAdapter.height(20)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("搜索历史",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: ScreenAdapter.fontSize(42))),
+                const Icon(Icons.delete_forever_outlined)
+              ],
+            ),
+          ),
+          Wrap(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("手机"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("笔记本"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("路由器"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("手机"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("笔记本"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("路由器"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("手机"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("笔记本"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("路由器"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("手机"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("笔记本"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: EdgeInsets.only(bottom: ScreenAdapter.height(20)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("猜你想搜",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: ScreenAdapter.fontSize(42))),
+                const Icon(Icons.refresh)
+              ],
+            ),
+          ),
+          Wrap(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("路由器"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("手机"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("笔记本"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("路由器"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("手机"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("笔记本"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("电脑"),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16),
+                    ScreenAdapter.width(32),
+                    ScreenAdapter.width(16)),
+                margin: EdgeInsets.all(ScreenAdapter.height(16)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Text("路由器"),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+        ],
       ),
     );
   }
