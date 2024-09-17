@@ -387,7 +387,57 @@ class SearchView extends GetView{
           ),
 
           const SizedBox(height: 20),
+          //热销商品
 
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: ScreenAdapter.height(138),
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/images/hot_search.png"))),
+                ),
+                Container(
+                  padding: EdgeInsets.all(ScreenAdapter.width(20)),
+                  child: GridView.builder(
+                      shrinkWrap: true, //收缩
+                      itemCount: 8, //必须设置
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: ScreenAdapter.width(40),
+                          mainAxisSpacing: ScreenAdapter.height(20),
+                          childAspectRatio: 3 / 1),
+                      itemBuilder: ((context, index) {
+                        return Row(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: ScreenAdapter.width(120),
+                              padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                              child: Image.network(
+                                "https://www.itying.com/images/shouji.png",
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                            Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                                  alignment: Alignment.topLeft,
+                                  child: const Text("小米净化器 热水器 小米净化器"),
+                                ))
+                          ],
+                        );
+                      })),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
