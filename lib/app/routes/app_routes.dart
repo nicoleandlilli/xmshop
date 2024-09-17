@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 abstract class Routes{
   Routes._();
 
-  static const tabs = Paths.tabs;
+  static const tabs = Paths.TABS;
 }
 
 abstract class Paths {
   Paths._();
-  static const tabs = '/tabs';
-  static const productList = '/product-list';
+  static const TABS = '/tabs';
+  static const PRODUCT_LIST  = '/product-list';
+  static const SEARCH = '/search';
 }
 

@@ -3,6 +3,8 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:xmeshop/app/modules/productList/bindings/product_list_binding.dart';
 import 'package:xmeshop/app/modules/productList/views/product_list_view.dart';
 
+import '../modules/search/bingdings/tabs_binding.dart';
+import '../modules/search/views/search_view.dart';
 import '../modules/tabs/bingdings/tabs_binding.dart';
 import '../modules/tabs/views/tabs_view.dart';
 import 'app_routes.dart';
@@ -14,16 +16,22 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: Paths.tabs,
+      name: Paths.TABS,
       page: ()=>const TabsView(),
       binding: TabsBinding(),
     ),
 
 
     GetPage(
-      name: Paths.productList,
+      name: Paths.PRODUCT_LIST,
       page: ()=>const ProductListView(),
       binding: ProductListBinding(),
+    ),
+
+    GetPage(
+      name: Paths.SEARCH,
+      page: ()=>const SearchView(),
+      binding: SearchBinding(),
     ),
 
     // GetPage(
