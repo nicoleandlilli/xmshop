@@ -12,6 +12,8 @@ import 'package:xmeshop/app/services/ncFonts.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../../../routes/app_routes.dart';
+
 ///请求转换对象地址： https://autocode.icu/jsontodart
 class HomeView extends GetView<HomeController>{
   const HomeView({super.key});
@@ -375,21 +377,26 @@ class HomeView extends GetView<HomeController>{
               child: Obx(()=> AppBar(
                 leading: controller.flag.value? const Text(""): const Icon(NCFonts.xiaomi, color: Colors.white,),
                 leadingWidth: controller.flag.value?ScreenAdapter.width(40):ScreenAdapter.width(140),
-                title: AnimatedContainer(
-                  width: controller.flag.value?ScreenAdapter.width(800):ScreenAdapter.width(620),
-                  height: ScreenAdapter.height(96),
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(246, 246, 246, 1),
-                    borderRadius: BorderRadius.circular(30),
+                title: InkWell(
+                  child: AnimatedContainer(
+                    width: controller.flag.value?ScreenAdapter.width(800):ScreenAdapter.width(620),
+                    height: ScreenAdapter.height(96),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(246, 246, 246, 1),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    duration: const Duration(milliseconds: 300),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(padding: EdgeInsets.fromLTRB(10, 0, 4, 0), child: Icon(Icons.search),),
+                        Text("手机",style: TextStyle(color: Colors.black54, fontSize: ScreenAdapter.fontSize(32)),),
+                      ],
+                    ),
                   ),
-                  duration: const Duration(milliseconds: 300),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Padding(padding: EdgeInsets.fromLTRB(10, 0, 4, 0), child: Icon(Icons.search),),
-                      Text("手机",style: TextStyle(color: Colors.black54, fontSize: ScreenAdapter.fontSize(32)),),
-                    ],
-                  ),
+                  onTap: (){
+                    Get.toNamed(Paths.SEARCH);
+                  },
                 ),
                 centerTitle: true,
                 backgroundColor: controller.flag.value?Colors.white:Colors.transparent,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/category/controllers/category_controller.dart';
 import 'package:xmeshop/app/services/http_client.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../../services/kee_alive_wrapper.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
 
@@ -35,22 +36,28 @@ class CategoryView extends GetView<CategoryController>{
 
   AppBar _buildAppBar() {
     return AppBar(
-          title:  AnimatedContainer(
-            width: ScreenAdapter.width(840),
-            height: ScreenAdapter.height(96),
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(246, 246, 246, 1),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            duration: const Duration(milliseconds: 300),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Padding(padding: EdgeInsets.fromLTRB(10, 0, 4, 0), child: Icon(Icons.search),),
-                Text("手机",style: TextStyle(color: Colors.black54, fontSize: ScreenAdapter.fontSize(32)),),
-              ],
-            ),
+
+      title: InkWell(
+        child: AnimatedContainer(
+          width: ScreenAdapter.width(840),
+          height: ScreenAdapter.height(96),
+          decoration: BoxDecoration(
+            color: const Color.fromRGBO(246, 246, 246, 1),
+            borderRadius: BorderRadius.circular(30),
           ),
+          duration: const Duration(milliseconds: 300),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(padding: EdgeInsets.fromLTRB(10, 0, 4, 0), child: Icon(Icons.search),),
+              Text("手机",style: TextStyle(color: Colors.black54, fontSize: ScreenAdapter.fontSize(32)),),
+            ],
+          ),
+        ),
+        onTap: (){
+          Get.toNamed(Paths.SEARCH);
+        },
+      ),
           actions: [
             IconButton(
                 onPressed: (){
