@@ -93,37 +93,42 @@ class HomeView extends GetView<HomeController>{
             itemBuilder: (context, index){
               // var height=50+150*Random().nextDouble(); //0.0-1.0
               var item = controller.popularProductList[index];
-              return Container(
-                // height: height,
-                padding: EdgeInsets.all(ScreenAdapter.width(20)),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  // border: Border.all(color: Colors.black, width: 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      child: Image.network(HttpClient.replaceUri(item.pic), fit: BoxFit.cover,),
+              return InkWell(
+                 child:  Container(
+                    // height: height,
+                    padding: EdgeInsets.all(ScreenAdapter.width(20)),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      // border: Border.all(color: Colors.black, width: 1),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      width: double.infinity,
-                      child: Text(item.title, textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                          child: Image.network(HttpClient.replaceUri(item.pic), fit: BoxFit.cover,),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                          width: double.infinity,
+                          child: Text(item.title, textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                          width: double.infinity,
+                          child: Text(item.subTitle, textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(ScreenAdapter.width(10)),
+                          width: double.infinity,
+                          child: Text("￥${item.price}", textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32), fontWeight: FontWeight.bold),),
+                        ),
+                      ],
                     ),
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      width: double.infinity,
-                      child: Text(item.subTitle, textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                      width: double.infinity,
-                      child: Text("￥${item.price}", textAlign: TextAlign.start, style: TextStyle(fontSize: ScreenAdapter.fontSize(32), fontWeight: FontWeight.bold),),
-                    ),
-                  ],
-                ),
+                  ),
+                onTap: (){
+                  Get.toNamed(Paths.PRODUCT_CONTENT, arguments: {"id": controller.bestSellingPList[index].id});
+                },
               );
             },
           )),
