@@ -1,5 +1,6 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:xmeshop/app/modules/productList/bindings/product_list_binding.dart';
 import 'package:xmeshop/app/modules/productList/views/product_list_view.dart';
 
@@ -29,6 +30,8 @@ class AppPages {
     ),
 
     GetPage(
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 100),
       name: Paths.SEARCH,
       page: ()=>const SearchView(),
       binding: SearchBinding(),

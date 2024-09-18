@@ -49,7 +49,7 @@ class CategoryView extends GetView<CategoryController>{
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(padding: EdgeInsets.fromLTRB(10, 0, 4, 0), child: Icon(Icons.search),),
+              const Padding(padding: EdgeInsets.fromLTRB(10, 0, 4, 0), child: Icon(Icons.search,color:Colors.black54,),),
               Text("手机",style: TextStyle(color: Colors.black54, fontSize: ScreenAdapter.fontSize(32)),),
             ],
           ),
