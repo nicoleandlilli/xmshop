@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:xmeshop/app/modules/sample/controllers/sample_controller.dart';
 
 import '../../../services/kee_alive_wrapper.dart';
 
-class SampleView extends GetView{
+class SampleView extends GetView<SampleController>{
   const SampleView({super.key});
 
   @override

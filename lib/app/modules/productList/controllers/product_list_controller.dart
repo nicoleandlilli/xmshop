@@ -38,6 +38,11 @@ class ProductListController extends GetxController{
   RxInt subHeaderListSort=0.obs;
 
 
+  //获取传值
+  String? keywords=Get.arguments['keywords'];
+  String? cid=Get.arguments['cid'];
+  String apiUri="";
+
   @override
   void onInit() {
     super.onInit();
@@ -99,15 +104,23 @@ class ProductListController extends GetxController{
   ///获取热销甄选下的热门商品
   getPListData() async{
     try {
+
+
+
       if(flag&hasData.value) {
         flag=false;
-        var response = await httpClient.get("/api/plist?cid=${Get
-            .arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
-        if (kDebugMode) {
-          print(
-              "................................................................................../api/plist?cid=${Get
-                  .arguments["cid"]}&page=$page&pageSize=$pageSize&sort=$sort");
+
+        if (cid != null) {
+          apiUri =
+             "/api/plist?cid=$cid&page=$page&pageSize=$pageSize&sort=$sort";
+        } else {
+          apiUri ="/api/plist?search=$keywords&page=$page&pageSize=$pageSize&sort=$sort";
         }
+        if (kDebugMode) {
+          print("..................................................................................$apiUri");
+        }
+        var response = await httpClient.get(apiUri);
+
         if (response != null) {
           var temp = PListModel.fromJson(response.data);
           pList.addAll(temp.result);

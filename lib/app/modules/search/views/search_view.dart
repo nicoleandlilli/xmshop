@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-import '../../../services/kee_alive_wrapper.dart';
+import '../../../routes/app_routes.dart';
 import '../../../services/screenAdapter.dart';
+import '../controllers/search_controller.dart';
 
-class SearchView extends GetView{
+class SearchView extends GetView<SearchControllerX>{
   const SearchView({super.key});
 
   @override
@@ -30,7 +30,11 @@ class SearchView extends GetView{
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none)),
+                    borderSide: BorderSide.none),),
+            onChanged: (value){
+              controller.keywords = value;
+              // controller.keywords = value;
+            },
           ),
         ),
         centerTitle: true,
@@ -38,7 +42,9 @@ class SearchView extends GetView{
         actions: [
           TextButton(
               onPressed: () {
-                print("搜索");
+                Get.toNamed(Paths.PRODUCT_LIST,arguments: {
+                  "keywords": controller.keywords
+                });
               },
               child: Text("搜索",
                   style: TextStyle(
