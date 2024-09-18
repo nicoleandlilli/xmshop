@@ -30,12 +30,12 @@ class ProductListView extends GetView<ProductListController>{
   }
 
   Widget _buildBody(){
-    return Stack(
+    return Obx(()=> controller.pList.isNotEmpty?Stack(
       children: [
         _buildProductList(),
         _buildSubHeader(),
       ],
-    );
+    ):_buildProgressIndicator());
   }
 
   Widget _buildProgressIndicator(){
@@ -51,7 +51,7 @@ class ProductListView extends GetView<ProductListController>{
   }
 
   Widget _buildProductList(){
-    return Obx(()=>controller.pList.isNotEmpty? ListView.builder(
+    return ListView.builder(
         controller: controller.scrollController,
         padding: EdgeInsets.fromLTRB(ScreenAdapter.height(26), ScreenAdapter.height(140), ScreenAdapter.height(26), ScreenAdapter.height(26)),
         itemCount: controller.pList.length,
@@ -123,7 +123,7 @@ class ProductListView extends GetView<ProductListController>{
               (index==controller.pList.length-1)?_buildProgressIndicator():const Text(""),
             ],
           );
-        }):_buildProgressIndicator());
+        });
   }
 
   Widget _buildSubHeader(){
