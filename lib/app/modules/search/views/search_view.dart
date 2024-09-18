@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,8 +34,16 @@ class SearchView extends GetView<SearchControllerX>{
                     borderSide: BorderSide.none),),
             onChanged: (value){
               controller.keywords = value;
-              // controller.keywords = value;
+
             },
+
+            //监听键盘的回车事件
+            onSubmitted: (value) {
+              //替换路由
+              Get.offAndToNamed("/product-list",
+                  arguments: {"keywords": value});
+            },
+
           ),
         ),
         centerTitle: true,
