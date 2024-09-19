@@ -15,7 +15,8 @@ class SecondPageView extends GetView {
               key: controller.gk2,
               alignment: Alignment.center,
       child: Column(
-        children: [subHeader(),
+        children: [
+          subHeader(),
           Obx(() => controller.selectedSubTabsIndex == 1
               ? Container(
               width: ScreenAdapter.width(1080),

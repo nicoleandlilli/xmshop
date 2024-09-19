@@ -118,12 +118,31 @@ class ProductContentView extends GetView<ProductContentController>{
                             as BuildContext,
                             duration:
                             const Duration(milliseconds: 100));
+                        // //修正
+                        //
+                        // Timer.periodic(Duration(milliseconds: 101),
+                        // (timer) {
+                        //   controller.scrollController.jumpTo(
+                        //       controller.scrollController.position.pixels -
+                        //           ScreenAdapter.height(120));
+                        //   timer.cancel();
+                        // }
                       } else {
                         Scrollable.ensureVisible(
                             controller.gk3.currentContext
                             as BuildContext,
                             duration:
                             const Duration(milliseconds: 500));
+
+                        // //修正
+                        //
+                        // Timer.periodic(Duration(milliseconds: 101),
+                        // (timer) {
+                        //   controller.scrollController.jumpTo(
+                        //       controller.scrollController.position.pixels -
+                        //           ScreenAdapter.height(120));
+                        //   timer.cancel();
+                        // }
                       }
                     },
                     child: Column(
