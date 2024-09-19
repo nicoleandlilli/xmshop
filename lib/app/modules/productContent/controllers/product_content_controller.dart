@@ -46,6 +46,15 @@ class ProductContentController extends GetxController{
   //是否显示详情tab切换
   RxBool showSubHeaderTabs=false.obs;
 
+  List subTabsList = [
+    {
+      "id": 1,
+      "title": "商品介绍",
+    },
+    {"id": 2, "title": "规格参数"},
+  ];
+  RxInt selectedSubTabsIndex = 1.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -117,6 +126,14 @@ class ProductContentController extends GetxController{
 
   void changeSelectedTabsIndex(index){
     selectedTabsIndex.value=index;
+    update();
+  }
+
+  //改变内容区域的tab切换
+  void changeSelectedSubTabsIndex(index) {
+    selectedSubTabsIndex.value = index;
+    //跳转到指定位置
+    scrollController.jumpTo(gk2Position);
     update();
   }
 

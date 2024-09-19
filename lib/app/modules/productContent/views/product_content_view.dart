@@ -242,25 +242,27 @@ class ProductContentView extends GetView<ProductContentController>{
   }
 
   Widget _subHeader() {
-    return Container(
+    return Obx(() => Container(
       color: Colors.white,
       child: Row(
-        children: [
-          Expanded(
-              child: Container(
-                height: ScreenAdapter.height(120),
-                alignment: Alignment.center,
-                child: Text("商品介绍", style: TextStyle(color: Colors.red)),
-              )),
-          Expanded(
-              child: Container(
-                height: ScreenAdapter.height(120),
-                alignment: Alignment.center,
-                child: Text("规格参数"),
-              ))
-        ],
-      ),
-    );
+          children: controller.subTabsList.map((value) {
+            return Expanded(
+                child: InkWell(
+                  onTap: () {
+                    controller.changeSelectedSubTabsIndex(value["id"]);
+                  },
+                  child: Container(
+                    height: ScreenAdapter.height(120),
+                    alignment: Alignment.center,
+                    child: Text("${value["title"]}",
+                        style: TextStyle(
+                            color: controller.selectedSubTabsIndex == value["id"]
+                                ? Colors.red
+                                : Colors.black87)),
+                  ),
+                ));
+          }).toList()),
+    ));
   }
 
   Widget _body(){
