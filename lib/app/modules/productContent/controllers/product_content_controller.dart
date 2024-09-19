@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:xmeshop/app/services/http_client.dart';
+
+import '../../../models/pcontent_model.dart';
 
 class ProductContentController extends GetxController{
 
   final ScrollController scrollController = ScrollController();
-
+  HttpClient httpClient = HttpClient();
   GlobalKey gk1 = GlobalKey();
   GlobalKey gk2 = GlobalKey();
   GlobalKey gk3 = GlobalKey();
@@ -14,6 +19,10 @@ class ProductContentController extends GetxController{
   RxDouble opcity=0.0.obs;
   //是否显示tabs
   RxBool showTabs=false.obs;
+
+  //详情数据
+  var pcontent=PcontentItemModel().obs;
+
   List tabsList=[
     {
       "id":1,
@@ -33,6 +42,7 @@ class ProductContentController extends GetxController{
   void onInit() {
     super.onInit();
     scrollControllerListener();
+    getContentData();
   }
 
   @override
@@ -66,6 +76,16 @@ class ProductContentController extends GetxController{
   void changeSelectedTabsIndex(index){
     selectedTabsIndex.value=index;
     update();
+  }
+
+  //获取详情数据
+  getContentData() async {
+    var response = await httpClient.get("/api/pcontent?id=${Get.arguments["id"]}");
+    if (response != null) {
+      var tempData = PcontentModel.fromJson(response.data);
+      pcontent.value=tempData.result!;
+      update();
+    }
   }
 
 }

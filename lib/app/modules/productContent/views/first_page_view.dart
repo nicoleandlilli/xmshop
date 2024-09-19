@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xmeshop/app/services/http_client.dart';
 
 import '../../../services/screenAdapter.dart';
 import '../controllers/product_content_controller.dart';
@@ -7,10 +8,11 @@ import '../controllers/product_content_controller.dart';
 class FirstPageView extends GetView {
   @override
   final ProductContentController controller = Get.find();
-  FirstPageView({Key? key}) : super(key: key);
+  final Function showBottomAttr;
+  FirstPageView(this.showBottomAttr,{super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Obx(() => controller.pcontent.value.sId!=null? Container(
       padding: EdgeInsets.all(ScreenAdapter.width(20)),
       key: controller.gk1,
       width: ScreenAdapter.width(1080),
@@ -19,21 +21,23 @@ class FirstPageView extends GetView {
           //图片
           AspectRatio(
             aspectRatio: 1 / 1,
-            child: Image.network("https://www.itying.com/images/flutter/p1.jpg",
+            child: Image.network(HttpClient.replaceUri(controller.pcontent.value.pic!),
                 fit: BoxFit.cover),
           ),
           //标题
           Container(
+            alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
-            child: Text("联想ThinkPad 翼480（0VCD） 英特尔酷睿i5 14英寸轻薄窄边框笔记本电脑",
+            child: Text("${controller.pcontent.value.title}",
                 style: TextStyle(
                     color: Colors.black87,
                     fontSize: ScreenAdapter.fontSize(46))),
           ),
           Container(
+            alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
             child: Text(
-                "震撼首发，15.9毫米全金属外观，4.9毫米轻薄窄边框，指纹电源按钮，杜比音效，2G独显，预装正版office软件",
+                "${controller.pcontent.value.subTitle}",
                 style: TextStyle(
                     color: Colors.black87,
                     fontSize: ScreenAdapter.fontSize(34))),
@@ -48,7 +52,7 @@ class FirstPageView extends GetView {
                   children: [
                     const Text("价格: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("¥128",
+                    Text("¥${controller.pcontent.value.price}",
                         style: TextStyle(
                             color: Colors.red,
                             fontSize: ScreenAdapter.fontSize(86)))
@@ -58,7 +62,7 @@ class FirstPageView extends GetView {
                   children: [
                     const Text("原价: ",
                         style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("¥158",
+                    Text("${controller.pcontent.value.oldPrice}",
                         style: TextStyle(
                             color: Colors.black26,
                             fontSize: ScreenAdapter.fontSize(46),
@@ -72,117 +76,9 @@ class FirstPageView extends GetView {
           Container(
             height: ScreenAdapter.height(140),
             padding: EdgeInsets.only(top: ScreenAdapter.height(20)),
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {
-                Get.bottomSheet(Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.all(ScreenAdapter.width(20)),
-                  width: double.infinity,
-                  height: ScreenAdapter.height(1200),
-                  child: ListView(
-                    children: [
-                      Wrap(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: const Text("版本",
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: Wrap(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                    label: const Text("8GB+128GB")
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                    padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                    label: const Text("16GB+256GB")
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                    label: const Text("8GB+128GB")
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                          ,
-                           Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: const Text("颜色",
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                top: ScreenAdapter.height(20),
-                                left: ScreenAdapter.width(20)),
-                            width: ScreenAdapter.width(1040),
-                            child: Wrap(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                   label: const Text("幻银"),
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                    padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                     label: const Text("红色"),
-                                  ),
-                                ),
-                                 Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                      label: const Text("黑色"),
-                                  ),                                  
-                                ),
-                                Container(
-                                   margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                  child: Chip(
-                                      padding: EdgeInsets.only(left: ScreenAdapter.width(20),right: ScreenAdapter.width(20)),
-                                    backgroundColor:  const Color.fromARGB(31, 223, 213, 213),
-                                      label: const Text("蓝色"),
-                                  ),
-                                  
-                                ),
-                              ],
-                            ),
-                          )
-                        
-                        ],
-                      )
-                    ],
-                  ),
-                ));
+                showBottomAttr();
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -235,7 +131,7 @@ class FirstPageView extends GetView {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "方塔路万达2012铺小米之家",
                                   style: TextStyle(
@@ -243,7 +139,7 @@ class FirstPageView extends GetView {
                                 )),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "距离1.04km",
                                   style: TextStyle(
@@ -251,7 +147,7 @@ class FirstPageView extends GetView {
                                 )),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "营业时间 9:00-23:00",
                                   style: TextStyle(
@@ -278,7 +174,7 @@ class FirstPageView extends GetView {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "方塔路万达2012铺小米之家",
                                   style: TextStyle(
@@ -286,7 +182,7 @@ class FirstPageView extends GetView {
                                 )),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "距离1.04km",
                                   style: TextStyle(
@@ -294,7 +190,7 @@ class FirstPageView extends GetView {
                                 )),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "营业时间 9:00-23:00",
                                   style: TextStyle(
@@ -321,7 +217,7 @@ class FirstPageView extends GetView {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "方塔路万达2012铺小米之家",
                                   style: TextStyle(
@@ -329,7 +225,7 @@ class FirstPageView extends GetView {
                                 )),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "距离1.04km",
                                   style: TextStyle(
@@ -337,7 +233,7 @@ class FirstPageView extends GetView {
                                 )),
                             Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenAdapter.height(32)),
+                                EdgeInsets.all(ScreenAdapter.height(32)),
                                 child: Text(
                                   "营业时间 9:00-23:00",
                                   style: TextStyle(
@@ -418,6 +314,11 @@ class FirstPageView extends GetView {
           )
         ],
       ),
-    );
+    ):SizedBox(
+      height: ScreenAdapter.height(2400),
+      child: const Center(
+        child: CircularProgressIndicator(),
+      ),
+    ));
   }
 }
