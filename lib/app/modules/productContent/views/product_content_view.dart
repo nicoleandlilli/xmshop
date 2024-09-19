@@ -65,6 +65,7 @@ class ProductContentView extends GetView<ProductContentController>{
           },
         ));
   }
+
   Widget _appBar(BuildContext context){
     return Obx(
           () => AppBar(
@@ -239,14 +240,38 @@ class ProductContentView extends GetView<ProductContentController>{
       ),
     );
   }
+
+  Widget _subHeader() {
+    return Container(
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+              child: Container(
+                height: ScreenAdapter.height(120),
+                alignment: Alignment.center,
+                child: Text("商品介绍", style: TextStyle(color: Colors.red)),
+              )),
+          Expanded(
+              child: Container(
+                height: ScreenAdapter.height(120),
+                alignment: Alignment.center,
+                child: Text("规格参数"),
+              ))
+        ],
+      ),
+    );
+  }
+
   Widget _body(){
     return SingleChildScrollView(
       controller: controller.scrollController,
       child: Column(
         children: [
           FirstPageView(showBottomAttr),
-          SecondPageView(),
+          SecondPageView(_subHeader),
           ThirdPageView(),
+
         ],
       ),
     );
@@ -341,6 +366,14 @@ class ProductContentView extends GetView<ProductContentController>{
         children: [
           _body(),
           _bottom(),
+          Obx(() => controller.showSubHeaderTabs.value
+              ? Positioned(
+              left: 0,
+              top: ScreenAdapter.getStatusBarHeight() +
+                  ScreenAdapter.height(118),
+              right: 0,
+              child: _subHeader())
+              : const Text("")),
         ],
       ) ,
     );

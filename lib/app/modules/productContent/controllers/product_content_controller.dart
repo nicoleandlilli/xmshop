@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:xmeshop/app/services/http_client.dart';
-
+import 'package:xmeshop/app/services/screenAdapter.dart';
 import '../../../models/pcontent_model.dart';
 
 class ProductContentController extends GetxController{
@@ -40,6 +40,12 @@ class ProductContentController extends GetxController{
   ];
   RxInt selectedTabsIndex=1.obs;
 
+  //详情 container的位置
+  double gk2Position=0;
+  double gk3Position=0;
+  //是否显示详情tab切换
+  RxBool showSubHeaderTabs=false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -60,6 +66,27 @@ class ProductContentController extends GetxController{
 //监听滚动条滚动事件
   void scrollControllerListener() {
     scrollController.addListener(() {
+
+      //获取渲染后的元素的位置
+      if(gk2Position==0&& gk3Position==0){
+        print(scrollController.position.pixels);
+        //获取Container高度的时候获取的是距离顶部的高度，如果要从0开始计算要加下滚动条下拉的高度
+        getContainerPosition(scrollController.position.pixels);
+      }
+      //显示隐藏详情 subHeader tab切换
+      if(scrollController.position.pixels>gk2Position&& scrollController.position.pixels<gk3Position){
+        if(showSubHeaderTabs.value==false){
+          showSubHeaderTabs.value=true;
+        }
+      }else{
+        if( showSubHeaderTabs.value==true){
+          showSubHeaderTabs.value=false;
+        }
+      }
+
+
+
+      //显示隐藏顶部tab切换
       if (scrollController.position.pixels <= 100) {
         opcity.value=scrollController.position.pixels/100;
         if(showTabs.value==true){
@@ -73,6 +100,19 @@ class ProductContentController extends GetxController{
         }
       }
     });
+  }
+
+  //获取元素位置   globalKey.currentContext!.findRenderObject()可以获取渲染的属性。
+  getContainerPosition(pixels){
+    RenderBox box2=gk2.currentContext!.findRenderObject() as RenderBox;
+    gk2Position=box2.localToGlobal(Offset.zero).dy+pixels-(ScreenAdapter.getStatusBarHeight()+ScreenAdapter.height(120));
+
+    RenderBox box3=gk3.currentContext!.findRenderObject() as RenderBox;
+    gk3Position=box3.localToGlobal(Offset.zero).dy+pixels-(ScreenAdapter.getStatusBarHeight()+ScreenAdapter.height(120));
+    print(gk2Position);
+
+    print(gk3Position);
+
   }
 
   void changeSelectedTabsIndex(index){
