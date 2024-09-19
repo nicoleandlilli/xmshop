@@ -72,10 +72,9 @@ class ProductContentController extends GetxController{
     super.onClose();
   }
 
-//监听滚动条滚动事件
+  //监听滚动条滚动事件
   void scrollControllerListener() {
     scrollController.addListener(() {
-
       //获取渲染后的元素的位置
       if(gk2Position==0&& gk3Position==0){
         print(scrollController.position.pixels);
@@ -86,25 +85,36 @@ class ProductContentController extends GetxController{
       if(scrollController.position.pixels>gk2Position&& scrollController.position.pixels<gk3Position){
         if(showSubHeaderTabs.value==false){
           showSubHeaderTabs.value=true;
+          selectedTabsIndex.value=2;
+          update();
         }
-      }else{
+      }else if(scrollController.position.pixels>0&& scrollController.position.pixels<gk2Position){
         if( showSubHeaderTabs.value==true){
           showSubHeaderTabs.value=false;
+          selectedTabsIndex.value=1;
+          update();
+        }
+      }else if(scrollController.position.pixels>gk2Position){
+        if( showSubHeaderTabs.value==true){
+          showSubHeaderTabs.value=false;
+          selectedTabsIndex.value=3;
+          update();
         }
       }
 
-
-
       //显示隐藏顶部tab切换
       if (scrollController.position.pixels <= 100) {
-        opcity.value=scrollController.position.pixels/100;
-        if(showTabs.value==true){
-          showTabs.value=false;
+        opcity.value = scrollController.position.pixels / 100;
+        if(opcity.value> 0.96){
+          opcity.value=1;
+        }
+        if (showTabs.value == true) {
+          showTabs.value = false;
         }
         update();
-      } else{
-        if(showTabs.value==false){
-          showTabs.value=true;
+      } else {
+        if (showTabs.value == false) {
+          showTabs.value = true;
           update();
         }
       }
