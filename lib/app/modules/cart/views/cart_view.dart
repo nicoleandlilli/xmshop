@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import '../../../services/screenAdapter.dart';
 import '../../../services/kee_alive_wrapper.dart';
+import "cart_item_view.dart";
+import './cart_item_num_view.dart';
 
 class CartView extends GetView{
   const CartView({super.key});
@@ -24,18 +26,18 @@ class CartView extends GetView{
       ),
       body: Stack(
         children: [
-          // ListView(
-          //   children: const [
-          //     CartItemView(),
-          //     CartItemView(),
-          //     CartItemView(),
-          //     CartItemView(),
-          //     CartItemView(),
-          //     CartItemView(),
-          //     CartItemView(),
-          //     CartItemView(),
-          //   ],
-          // ),
+          ListView(
+            children: const [
+              CartItemView(),
+              CartItemView(),
+              CartItemView(),
+              CartItemView(),
+              CartItemView(),
+              CartItemView(),
+              CartItemView(),
+              CartItemView(),
+            ],
+          ),
           Positioned(
               left: 0,
               right: 0,
@@ -80,7 +82,7 @@ class CartView extends GetView{
                             onPressed: (){
 
 
-                            }, child: Text("结算"))
+                            }, child: Text("结算")),
                       ],
                     )
                   ],
