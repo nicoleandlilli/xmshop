@@ -87,12 +87,12 @@ class HomeView extends GetView<HomeController>{
             crossAxisCount: 2, //2列
             mainAxisSpacing: ScreenAdapter.width(26),//水平方向间距
             crossAxisSpacing: ScreenAdapter.width(26),//垂直方向间距,
-            itemCount: controller.popularProductList.length,
+            itemCount: controller.bestSellingPList.length,
             shrinkWrap: true, ///收缩，让子元素自适应
             physics: const NeverScrollableScrollPhysics(),///禁止滑动
             itemBuilder: (context, index){
               // var height=50+150*Random().nextDouble(); //0.0-1.0
-              var item = controller.popularProductList[index];
+              var item = controller.bestSellingPList[index];
               return InkWell(
                  child:  Container(
                     // height: height,
@@ -127,8 +127,8 @@ class HomeView extends GetView<HomeController>{
                     ),
                   ),
                 onTap: (){
-                  Get.toNamed(Paths.PRODUCT_CONTENT, arguments: {"id": controller.bestSellingPList[index].id });
-                },
+                    Get.toNamed(Paths.PRODUCT_CONTENT, arguments: {"id": controller.bestSellingPList[index].id });
+                  },
               );
             },
           )),
