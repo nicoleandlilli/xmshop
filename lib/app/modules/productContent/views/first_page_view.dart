@@ -88,7 +88,7 @@ class FirstPageView extends GetView {
                       Text("已选", style: TextStyle(fontWeight: FontWeight.bold)),
                       Padding(
                         padding: EdgeInsets.only(left: ScreenAdapter.width(20)),
-                        child: const Text("115，黑色，XL，1件"),
+                        child: Text(controller.selectedAttr.value),
                       )
                     ],
                   ),

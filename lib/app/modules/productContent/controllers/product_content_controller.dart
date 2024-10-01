@@ -45,6 +45,8 @@ class ProductContentController extends GetxController{
   double gk3Position=0;
   //是否显示详情tab切换
   RxBool showSubHeaderTabs=false.obs;
+  //保存筛选属性值
+  RxString selectedAttr = "".obs;
 
   List subTabsList = [
     {
@@ -54,6 +56,8 @@ class ProductContentController extends GetxController{
     {"id": 2, "title": "规格参数"},
   ];
   RxInt selectedSubTabsIndex = 1.obs;
+
+
 
   @override
   void onInit() {
@@ -158,7 +162,8 @@ class ProductContentController extends GetxController{
       var tempData = PcontentModel.fromJson(response.data);
       pcontent.value = tempData.result!;
       pcontentAttr.value = pcontent.value.attr!;
-      initAttr(pcontentAttr);
+      initAttr(pcontentAttr); //初始化attr
+      setSelectedAttr(); //获取商品属性
       update();
     }
   }
@@ -176,7 +181,7 @@ class ProductContentController extends GetxController{
     }
   }
 
-  //cate  颜色    title 玫瑰红
+  //改变attr   cate  颜色    title 玫瑰红
   changeAttr(cate, title) {
     for (var i = 0; i < pcontentAttr.length; i++) {
       if (pcontentAttr[i].cate == cate) {
@@ -188,6 +193,20 @@ class ProductContentController extends GetxController{
         }
       }
     }
+    update();
+  }
+
+  //获取attr属性
+  setSelectedAttr() {
+    List tempList = [];
+    for (var i = 0; i < pcontentAttr.length; i++) {
+      for (var j = 0; j < pcontentAttr[i].attrList!.length; j++) {
+        if (pcontentAttr[i].attrList![j]["checked"]) {
+          tempList.add(pcontentAttr[i].attrList![j]["title"]);
+        }
+      }
+    }
+    selectedAttr.value = tempList.join(",");
     update();
   }
 
