@@ -81,11 +81,11 @@ class ProductListView extends GetView<ProductListController>{
                         children: [
                           Padding(
                             padding: EdgeInsets.only(bottom: ScreenAdapter.width(20)),
-                            child: Text(item.title, style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
+                            child: Text(item.title!, style: TextStyle(fontSize: ScreenAdapter.fontSize(42), fontWeight: FontWeight.bold),),
                           ),
                           Padding(
                             padding: EdgeInsets.only(bottom: ScreenAdapter.width(20)),
-                            child: Text(item.subTitle, style: TextStyle(fontSize: ScreenAdapter.fontSize(34),),),
+                            child: Text(item.subTitle!, style: TextStyle(fontSize: ScreenAdapter.fontSize(34),),),
                           ),
                           Container(
                             padding: EdgeInsets.only(bottom: ScreenAdapter.height(20)),

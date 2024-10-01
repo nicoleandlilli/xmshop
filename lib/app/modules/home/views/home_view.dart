@@ -127,7 +127,7 @@ class HomeView extends GetView<HomeController>{
                     ),
                   ),
                 onTap: (){
-                  Get.toNamed(Paths.PRODUCT_CONTENT, arguments: {"id": controller.bestSellingPList[index].id});
+                  Get.toNamed(Paths.PRODUCT_CONTENT, arguments: {"id": controller.bestSellingPList[index].id });
                 },
               );
             },

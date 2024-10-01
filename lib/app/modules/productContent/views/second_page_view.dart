@@ -17,7 +17,7 @@ class SecondPageView extends GetView {
       child: Column(
         children: [
           subHeader(),
-          Obx(() => controller.selectedSubTabsIndex == 1
+          Obx(() => controller.selectedSubTabsIndex.value == 1
               ? Container(
               width: ScreenAdapter.width(1080),
               child: Html(

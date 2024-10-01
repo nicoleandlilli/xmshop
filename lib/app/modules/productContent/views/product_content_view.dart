@@ -11,7 +11,8 @@ class ProductContentView extends GetView<ProductContentController>{
   const ProductContentView({super.key});
 
   //bottomSheet更新流数据需要使用 GetBuilder 来渲染数据
-  void showBottomAttr() {
+  //action 1点击的是筛选属性   2 点击的是加入购物车   3 表示点击的是立即购买
+  void showBottomAttr(int action) {
     Get.bottomSheet(
         GetBuilder<ProductContentController>(
           init: controller,
@@ -21,46 +22,158 @@ class ProductContentView extends GetView<ProductContentController>{
               padding: EdgeInsets.all(ScreenAdapter.width(20)),
               width: double.infinity,
               height: ScreenAdapter.height(1200),
-              child: ListView(
-                  children: controller.pcontent.value.attr!.map((v) {
-                    return Wrap(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(
-                              top: ScreenAdapter.height(20),
-                              left: ScreenAdapter.width(20)),
-                          width: ScreenAdapter.width(1040),
-                          child: Text("${v.cate}",
-                              style: const TextStyle(fontWeight: FontWeight.bold)),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                              top: ScreenAdapter.height(20),
-                              left: ScreenAdapter.width(20)),
-                          width: ScreenAdapter.width(1040),
-                          child: Wrap(
-                              children: v.attrList!.map((value) {
-                                return InkWell(
-                                  onTap: () {
-                                    controller.changeAttr(v.cate, value["title"]);
+              child: Stack(
+                children: [
+                  ListView(
+                      children: controller.pcontent.value.attr!.map((v) {
+                        return Wrap(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: ScreenAdapter.height(20),
+                                  left: ScreenAdapter.width(20)),
+                              width: ScreenAdapter.width(1040),
+                              child: Text("${v.cate}",
+                                  style: const TextStyle(fontWeight: FontWeight.bold)),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                  top: ScreenAdapter.height(20),
+                                  left: ScreenAdapter.width(20)),
+                              width: ScreenAdapter.width(1040),
+                              child: Wrap(
+                                  children: v.attrList!.map((value) {
+                                    return InkWell(
+                                      onTap: () {
+                                        controller.changeAttr(v.cate, value["title"]);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.all(ScreenAdapter.width(20)),
+                                        child: Chip(
+                                            padding: EdgeInsets.only(
+                                                left: ScreenAdapter.width(20),
+                                                right: ScreenAdapter.width(20)),
+                                            backgroundColor: value["checked"] == true
+                                                ? Colors.red
+                                                : const Color.fromARGB(31, 223, 213, 213),
+                                            label: Text(value["title"])),
+                                      ),
+                                    );
+                                  }).toList()),
+                            )
+                          ],
+                        );
+                      }).toList()),
+                  Positioned(
+                      right: 2,
+                      top: 0,
+                      child: IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      )),
+                  Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: action == 1
+                          ? Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: ScreenAdapter.height(120),
+                                margin: EdgeInsets.only(
+                                    right: ScreenAdapter.width(20)),
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all(
+                                          const Color.fromRGBO(
+                                              255, 165, 0, 0.9)),
+                                      foregroundColor:
+                                      MaterialStateProperty.all(
+                                          Colors.white),
+                                      shape: MaterialStateProperty.all(
+                                        // CircleBorder()
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  10)))),
+                                  onPressed: () {
+                                    // _addCart();
                                   },
-                                  child: Container(
-                                    margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                    child: Chip(
-                                        padding: EdgeInsets.only(
-                                            left: ScreenAdapter.width(20),
-                                            right: ScreenAdapter.width(20)),
-                                        backgroundColor: value["checked"] == true
-                                            ? Colors.red
-                                            : const Color.fromARGB(31, 223, 213, 213),
-                                        label: Text(value["title"])),
-                                  ),
-                                );
-                              }).toList()),
-                        )
-                      ],
-                    );
-                  }).toList()),
+                                  child: Text("加入购物车"),
+                                ),
+                              )),
+                          Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: ScreenAdapter.height(120),
+                                margin: EdgeInsets.only(
+                                    right: ScreenAdapter.width(20)),
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all(
+                                          const Color.fromRGBO(
+                                              253, 1, 0, 0.9)),
+                                      foregroundColor:
+                                      MaterialStateProperty.all(
+                                          Colors.white),
+                                      shape: MaterialStateProperty.all(
+                                        // CircleBorder()
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  10)))),
+                                  onPressed: () {
+                                    // _buy();
+                                    showBottomAttr(3);
+                                  },
+                                  child: Text("立即购买"),
+                                ),
+                              ))
+                        ],
+                      )
+                          : Row(
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: ScreenAdapter.height(120),
+                                margin: EdgeInsets.only(
+                                    right: ScreenAdapter.width(20)),
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all(
+                                          const Color.fromRGBO(
+                                              253, 1, 0, 0.9)),
+                                      foregroundColor:
+                                      MaterialStateProperty.all(
+                                          Colors.white),
+                                      shape: MaterialStateProperty.all(
+                                        // CircleBorder()
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  10)))),
+                                  onPressed: () {
+                                    if (action == 2) {
+                                      // _addCart();
+                                    } else {
+                                      // _buy();
+                                    }
+                                  },
+                                  child: Text("确定"),
+                                ),
+                              ))
+                        ],
+                      ))
+                ],
+              ),
             );
           },
         ));
@@ -342,7 +455,7 @@ class ProductContentView extends GetView<ProductContentController>{
                           )
                       ),
                       onPressed: () {
-                        showBottomAttr();
+                        showBottomAttr(2);
                       },
                       child: Text("加入购物车"),
                     ),
@@ -365,7 +478,7 @@ class ProductContentView extends GetView<ProductContentController>{
                           )
                       ),
                       onPressed: () {
-                        showBottomAttr();
+                        showBottomAttr(2);
                       },
                       child: Text("立即购买"),
                     ),
