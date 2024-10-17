@@ -6,6 +6,7 @@ import 'package:xmeshop/app/modules/productContent/views/second_page_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/first_page_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/third_page_view.dart';
 import '../../../services/screenAdapter.dart';
+import '../../cart/views/cart_item_num_view.dart';
 
 class ProductContentView extends GetView<ProductContentController>{
   const ProductContentView({super.key});
@@ -37,45 +38,57 @@ class ProductContentView extends GetView<ProductContentController>{
               child: Stack(
                 children: [
                   ListView(
-                      children: controller.pcontent.value.attr!.map((v) {
-                        return Wrap(
+                      children: [
+                        ...controller.pcontent.value.attr!.map((v) {
+                          return Wrap(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(
+                                    top: ScreenAdapter.height(20),
+                                    left: ScreenAdapter.width(20)),
+                                width: ScreenAdapter.width(1040),
+                                child: Text("${v.cate}",
+                                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(
+                                    top: ScreenAdapter.height(20),
+                                    left: ScreenAdapter.width(20)),
+                                width: ScreenAdapter.width(1040),
+                                child: Wrap(
+                                    children: v.attrList!.map((value) {
+                                      return InkWell(
+                                        onTap: () {
+                                          controller.changeAttr(v.cate, value["title"]);
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.all(ScreenAdapter.width(20)),
+                                          child: Chip(
+                                              padding: EdgeInsets.only(
+                                                  left: ScreenAdapter.width(20),
+                                                  right: ScreenAdapter.width(20)),
+                                              backgroundColor: value["checked"] == true
+                                                  ? Colors.red
+                                                  : const Color.fromARGB(31, 223, 213, 213),
+                                              label: Text(value["title"])),
+                                        ),
+                                      );
+                                    }).toList()),
+                              )
+                            ],
+                          );
+                        }).toList(),
+                        //数量
+                        Padding(padding: EdgeInsets.all(ScreenAdapter.height(20)),child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              padding: EdgeInsets.only(
-                                  top: ScreenAdapter.height(20),
-                                  left: ScreenAdapter.width(20)),
-                              width: ScreenAdapter.width(1040),
-                              child: Text("${v.cate}",
-                                  style: const TextStyle(fontWeight: FontWeight.bold)),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  top: ScreenAdapter.height(20),
-                                  left: ScreenAdapter.width(20)),
-                              width: ScreenAdapter.width(1040),
-                              child: Wrap(
-                                  children: v.attrList!.map((value) {
-                                    return InkWell(
-                                      onTap: () {
-                                        controller.changeAttr(v.cate, value["title"]);
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.all(ScreenAdapter.width(20)),
-                                        child: Chip(
-                                            padding: EdgeInsets.only(
-                                                left: ScreenAdapter.width(20),
-                                                right: ScreenAdapter.width(20)),
-                                            backgroundColor: value["checked"] == true
-                                                ? Colors.red
-                                                : const Color.fromARGB(31, 223, 213, 213),
-                                            label: Text(value["title"])),
-                                      ),
-                                    );
-                                  }).toList()),
-                            )
+                            Text("数量",style:
+                            TextStyle(fontWeight: FontWeight.bold)),
+                            CartItemNumView(),
                           ],
-                        );
-                      }).toList()),
+                        ),)
+                      ],
+                  ),
                   Positioned(
                       right: 2,
                       top: 0,
