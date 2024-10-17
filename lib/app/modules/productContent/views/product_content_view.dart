@@ -79,10 +79,10 @@ class ProductContentView extends GetView<ProductContentController>{
                           );
                         }).toList(),
                         //数量
-                        Padding(padding: EdgeInsets.all(ScreenAdapter.height(20)),child: const Row(
+                        Padding(padding: EdgeInsets.all(ScreenAdapter.height(20)),child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("数量",style:
+                            const Text("数量",style:
                             TextStyle(fontWeight: FontWeight.bold)),
                             CartItemNumView(),
                           ],

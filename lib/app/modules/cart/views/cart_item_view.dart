@@ -55,7 +55,7 @@ class CartItemView extends GetView {
                       style: TextStyle(
                           fontSize: ScreenAdapter.fontSize(38),
                           color: Colors.red)),
-                  const CartItemNumView()
+                  CartItemNumView()
                 ],
               )
             ],

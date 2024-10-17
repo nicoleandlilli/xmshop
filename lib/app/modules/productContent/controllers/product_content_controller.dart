@@ -48,6 +48,9 @@ class ProductContentController extends GetxController{
   //保存筛选属性值
   RxString selectedAttr = "".obs;
 
+  //购买的数量
+  RxInt buyNum = 1.obs;
+
   List subTabsList = [
     {
       "id": 1,
@@ -208,6 +211,20 @@ class ProductContentController extends GetxController{
     }
     selectedAttr.value = tempList.join(",");
     update();
+  }
+
+  //增加数量
+  incBuyNum() {
+    buyNum.value++;
+    update();
+  }
+  //减少数量
+
+  decBuyNum() {
+    if (buyNum.value > 1) {
+      buyNum.value--;
+      update();
+    }
   }
 
 /*

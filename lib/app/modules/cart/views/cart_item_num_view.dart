@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:xmeshop/app/modules/productContent/controllers/product_content_controller.dart';
 import '../../../services/screenAdapter.dart';
 
 class CartItemNumView extends GetView {
-  const CartItemNumView({super.key});
+  final ProductContentController controller = Get.find();
+  CartItemNumView({super.key});
 
   Widget _left(){
-    return Container(
-      alignment: Alignment.center,
-      width:ScreenAdapter.width(80) ,
-      height: ScreenAdapter.height(64),
-      child: const Text("-"),
+    return InkWell(
+      onTap: (){
+        controller.decBuyNum();
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width:ScreenAdapter.width(80) ,
+        height: ScreenAdapter.height(64),
+        child: const Text("-"),
+      ),
     );
   }
   Widget _center(){
-    return Container(
+    return Obx(()=>Container(
 
       decoration: BoxDecoration(
           border: Border(
@@ -26,15 +33,20 @@ class CartItemNumView extends GetView {
       alignment: Alignment.center,
       width:ScreenAdapter.width(80) ,
       height: ScreenAdapter.height(64),
-      child: const Text("0"),
-    );
+      child: Text("${controller.buyNum.value}"),
+    ),);
   }
   Widget _right(){
-    return Container(
-      alignment: Alignment.center,
-      width:ScreenAdapter.width(80) ,
-      height: ScreenAdapter.height(64),
-      child: const Text("+"),
+    return InkWell(
+      onTap: (){
+        controller.incBuyNum();
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width:ScreenAdapter.width(80) ,
+        height: ScreenAdapter.height(64),
+        child: const Text("+"),
+      ),
     );
   }
 
@@ -42,7 +54,7 @@ class CartItemNumView extends GetView {
   Widget build(BuildContext context) {
     return Container(
       width: ScreenAdapter.width(244),
-      height: ScreenAdapter.height(60),
+      height: ScreenAdapter.height(80),
       decoration: BoxDecoration(
           border: Border.all(
               width: ScreenAdapter.width(2),
