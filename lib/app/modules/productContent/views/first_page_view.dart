@@ -83,15 +83,15 @@ class FirstPageView extends GetView {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
+                  Obx(()=>Row(
                     children: [
-                      Text("已选", style: TextStyle(fontWeight: FontWeight.bold)),
+                      const Text("已选", style: TextStyle(fontWeight: FontWeight.bold)),
                       Padding(
                         padding: EdgeInsets.only(left: ScreenAdapter.width(20)),
                         child: Text(controller.selectedAttr.value),
                       )
                     ],
-                  ),
+                  ),),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Colors.black38,

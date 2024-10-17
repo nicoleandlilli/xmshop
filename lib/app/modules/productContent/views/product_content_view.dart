@@ -10,6 +10,18 @@ import '../../../services/screenAdapter.dart';
 class ProductContentView extends GetView<ProductContentController>{
   const ProductContentView({super.key});
 
+  void _addCart() {
+    controller.setSelectedAttr();
+    print("加入购物车");
+    Get.back();
+  }
+
+  void _buy() {
+    controller.setSelectedAttr();
+    print("立即购买");
+    Get.back();
+  }
+
   //bottomSheet更新流数据需要使用 GetBuilder 来渲染数据
   //action 1点击的是筛选属性   2 点击的是加入购物车   3 表示点击的是立即购买
   void showBottomAttr(int action) {
@@ -102,7 +114,7 @@ class ProductContentView extends GetView<ProductContentController>{
                                               BorderRadius.circular(
                                                   10)))),
                                   onPressed: () {
-                                    // _addCart();
+                                    _addCart();
                                   },
                                   child: Text("加入购物车"),
                                 ),
@@ -129,8 +141,8 @@ class ProductContentView extends GetView<ProductContentController>{
                                               BorderRadius.circular(
                                                   10)))),
                                   onPressed: () {
-                                    // _buy();
-                                    showBottomAttr(3);
+                                    _buy();
+                                    // showBottomAttr(3);
                                   },
                                   child: Text("立即购买"),
                                 ),
@@ -162,12 +174,12 @@ class ProductContentView extends GetView<ProductContentController>{
                                                   10)))),
                                   onPressed: () {
                                     if (action == 2) {
-                                      // _addCart();
+                                      _addCart();
                                     } else {
-                                      // _buy();
+                                      _buy();
                                     }
                                   },
-                                  child: Text("确定"),
+                                  child: const Text("确定"),
                                 ),
                               ))
                         ],
@@ -478,7 +490,7 @@ class ProductContentView extends GetView<ProductContentController>{
                           )
                       ),
                       onPressed: () {
-                        showBottomAttr(2);
+                        showBottomAttr(3);
                       },
                       child: Text("立即购买"),
                     ),
