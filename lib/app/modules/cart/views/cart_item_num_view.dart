@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import '../../../services/screenAdapter.dart';
 
 class CartItemNumView extends GetView {
-  CartItemNumView({super.key});
+  final Map cartItem;
+  CartItemNumView(this.cartItem,{super.key});
 
   Widget _left(){
     return Container(
@@ -26,7 +27,7 @@ class CartItemNumView extends GetView {
       alignment: Alignment.center,
       width:ScreenAdapter.width(80) ,
       height: ScreenAdapter.height(64),
-      child: Text("count"),
+      child: Text("${cartItem["count"]}"),
     );
   }
   Widget _right(){

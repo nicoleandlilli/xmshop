@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/productContent/controllers/product_content_controller.dart';
+import 'package:xmeshop/app/modules/productContent/views/product_content_cart_item_num_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/second_page_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/first_page_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/third_page_view.dart';
@@ -73,7 +74,7 @@ class ProductContentView extends GetView<ProductContentController>{
                           children: [
                             const Text("数量",style:
                             TextStyle(fontWeight: FontWeight.bold)),
-                            CartItemNumView(),
+                            ProductContentCartItemNumView(),
                           ],
                         ),)
                       ],
