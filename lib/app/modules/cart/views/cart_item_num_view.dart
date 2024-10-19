@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:xmeshop/app/modules/productContent/controllers/product_content_controller.dart';
 import '../../../services/screenAdapter.dart';
 
 class CartItemNumView extends GetView {
-  final ProductContentController controller = Get.find();
   CartItemNumView({super.key});
 
   Widget _left(){
-    return InkWell(
-      onTap: (){
-        controller.decBuyNum();
-      },
-      child: Container(
-        alignment: Alignment.center,
-        width:ScreenAdapter.width(80) ,
-        height: ScreenAdapter.height(64),
-        child: const Text("-"),
-      ),
+    return Container(
+      alignment: Alignment.center,
+      width:ScreenAdapter.width(80) ,
+      height: ScreenAdapter.height(64),
+      child: const Text("-"),
     );
   }
   Widget _center(){
-    return Obx(()=>Container(
+    return Container(
 
       decoration: BoxDecoration(
           border: Border(
@@ -33,20 +26,15 @@ class CartItemNumView extends GetView {
       alignment: Alignment.center,
       width:ScreenAdapter.width(80) ,
       height: ScreenAdapter.height(64),
-      child: Text("${controller.buyNum.value}"),
-    ),);
+      child: Text("count"),
+    );
   }
   Widget _right(){
-    return InkWell(
-      onTap: (){
-        controller.incBuyNum();
-      },
-      child: Container(
-        alignment: Alignment.center,
-        width:ScreenAdapter.width(80) ,
-        height: ScreenAdapter.height(64),
-        child: const Text("+"),
-      ),
+    return Container(
+      alignment: Alignment.center,
+      width:ScreenAdapter.width(80) ,
+      height: ScreenAdapter.height(64),
+      child: const Text("+"),
     );
   }
 
