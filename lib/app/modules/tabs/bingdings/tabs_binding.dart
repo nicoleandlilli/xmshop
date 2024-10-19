@@ -1,6 +1,7 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
+import 'package:xmeshop/app/modules/cart/controllers/cart_controller.dart';
 import 'package:xmeshop/app/modules/category/controllers/category_controller.dart';
 import 'package:xmeshop/app/modules/give/controllers/give_controller.dart';
 import 'package:xmeshop/app/modules/home/controllers/home_controller.dart';
@@ -23,6 +24,11 @@ class TabsBinding extends Bindings {
     Get.lazyPut<GiveController>(
           () => GiveController(),
     );
+
+    Get.lazyPut<CartController>(
+          () => CartController(),
+    );
+
     Get.lazyPut<UserController>(
           () => UserController(),
     );

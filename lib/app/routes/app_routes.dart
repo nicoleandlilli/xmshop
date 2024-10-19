@@ -12,5 +12,6 @@ abstract class Paths {
   static const PRODUCT_LIST  = '/product-list';
   static const SEARCH = '/search';
   static const PRODUCT_CONTENT = '/product_content';
+  static const CART = '/cart';
 }
 

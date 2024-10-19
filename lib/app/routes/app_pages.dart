@@ -6,6 +6,8 @@ import 'package:xmeshop/app/modules/productContent/views/product_content_view.da
 import 'package:xmeshop/app/modules/productList/bindings/product_list_binding.dart';
 import 'package:xmeshop/app/modules/productList/views/product_list_view.dart';
 
+import '../modules/cart/bingdings/product_content_binding.dart';
+import '../modules/cart/views/cart_view.dart';
 import '../modules/productContent/bingdings/product_content_binding.dart';
 import '../modules/search/bingdings/tabs_binding.dart';
 import '../modules/search/views/search_view.dart';
@@ -44,6 +46,12 @@ class AppPages {
       name: Paths.PRODUCT_CONTENT,
       page: ()=>const ProductContentView(),
       binding: ProductContentBinding(),
+    ),
+
+    GetPage(
+      name: Paths.CART,
+      page: ()=>const CartView(),
+      binding: CartBinding(),
     ),
 
     // GetPage(
