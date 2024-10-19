@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:xmeshop/app/services/cardServices.dart';
 import 'package:xmeshop/app/services/http_client.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
 import '../../../models/pcontent_model.dart';
@@ -226,6 +227,24 @@ class ProductContentController extends GetxController{
       update();
     }
   }
+
+  //加入购物车
+  void addCart() {
+    setSelectedAttr();
+    CardServices.addCart(pcontent.value,selectedAttr.value,buyNum.value);
+    Get.back();
+    Get.snackbar("提示?","加入购物车成功");
+  }
+  //立即购买
+  void buy() {
+    setSelectedAttr();
+    if (kDebugMode) {
+      print("立即购买");
+    }
+    Get.back();
+  }
+
+
 
 /*
     [{cate: 颜色, list: [土豪金, 玫瑰红, 磨砂黑]}, {cate: 内存, list: [16G, 32G, 64G]}]

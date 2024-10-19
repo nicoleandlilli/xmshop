@@ -14,7 +14,7 @@ class CartController extends GetxController{
       print("cart init");
     }
     super.onInit();
-    // getCartListData();
+    getCartListData();
   }
 
   @override

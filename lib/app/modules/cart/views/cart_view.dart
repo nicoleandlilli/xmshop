@@ -26,18 +26,23 @@ class CartView extends GetView<CartController>{
       body: Stack(
         children: [
           Obx(()=> controller.cartList.isNotEmpty?ListView(
-            children: const [
-              CartItemView(),
-              CartItemView(),
-              CartItemView(),
-              CartItemView(),
-              CartItemView(),
-              CartItemView(),
-              CartItemView(),
-              CartItemView(),
-            ],
+            children: controller.cartList.map((value){
+              return CartItemView();
+            }).toList(),
           )
               :const Text("")),
+          // ListView(
+          //   children: const [
+          //     CartItemView(),
+          //     CartItemView(),
+          //     CartItemView(),
+          //     CartItemView(),
+          //     CartItemView(),
+          //     CartItemView(),
+          //     CartItemView(),
+          //     CartItemView(),
+          //   ],
+          // ),
           Positioned(
               left: 0,
               right: 0,
