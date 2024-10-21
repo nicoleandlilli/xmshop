@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:xmeshop/app/services/ncFonts.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
 
 import '../../../services/kee_alive_wrapper.dart';
@@ -284,6 +285,107 @@ class UserView extends GetView{
                         ],
                       ),
                     ),
+                  ],
+                ),
+              ),
+
+              //服务
+              Container(
+                margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(ScreenAdapter.height(28)),
+                          child: Text("服务",
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: ScreenAdapter.fontSize(44),
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        const Text(
+                          "更多 > ",
+                          style: TextStyle(color: Colors.black54),
+                        )
+                      ],
+                    ),
+                    GridView.count(
+                      shrinkWrap: true, //收缩
+                      crossAxisCount: 4,
+                      childAspectRatio: 1.253,
+                      children: const [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              NCFonts.anzhuangyewu,
+                              color: Colors.blue,
+                            ),
+                            Text("一键安装")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(NCFonts.anzhuangyewu, color: Colors.orange),
+                            Text("一键退换")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(NCFonts.weixiu, color: Colors.purple),
+                            Text("一键维修")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(NCFonts.schedule, color: Colors.orange),
+                            Text("服务进度")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              NCFonts.xiaomi,
+                              color: Colors.orange,
+                            ),
+                            Text("小米之家")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              NCFonts.kefu,
+                              color: Colors.orange,
+                            ),
+                            Text("客服中心")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(NCFonts.duihuan, color: Colors.green),
+                            Text("以旧换新")
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(NCFonts.chongdian, color: Colors.green),
+                            Text("手机电池")
+                          ],
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
