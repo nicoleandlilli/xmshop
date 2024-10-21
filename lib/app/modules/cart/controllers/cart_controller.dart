@@ -9,6 +9,7 @@ import '../../../services/cardServices.dart';
 class CartController extends GetxController{
 
   RxList cartList=[].obs;
+  RxBool checkedAllBox=false.obs;
 
   @override
   void onInit() {
@@ -75,4 +76,18 @@ class CartController extends GetxController{
     // checkedAllBox.value=isCheckedAll();
     update();
   }
+
+  //全选 反选
+  void checkedAllFunc(value){
+    checkedAllBox.value=value;
+    var tempList=[];
+    for (var i = 0; i < cartList.length; i++) {
+      cartList[i]["checked"]=value;
+      tempList.add(cartList[i]);
+    }
+    cartList.value=tempList;
+    CartServices.setCartList(tempList);
+    update();
+  }
 }
+

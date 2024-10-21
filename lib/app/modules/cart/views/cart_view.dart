@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -58,14 +59,17 @@ class CartView extends GetView{
                       children: [
                         Row(
                           children: [
-                            Checkbox(value: true, onChanged:(value){
-                              print(value);
+                            Checkbox(value: controller.checkedAllBox.value, onChanged:(value){
+                              if (kDebugMode) {
+                                print(value);
+                              }
+                              controller.checkedAllFunc(value);
                             }),const Text("全选")
                           ],
                         ),
                         Row(
                           children: [
-                            Text("合计: "),
+                            const Text("合计: "),
                             Text("¥98.9",style: TextStyle(
                                 fontSize: ScreenAdapter.fontSize(58),
                                 color: Colors.red
