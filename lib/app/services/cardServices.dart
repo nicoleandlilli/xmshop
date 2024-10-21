@@ -2,7 +2,7 @@ import 'package:xmeshop/app/services/storage.dart';
 
 import '../models/pcontent_model.dart';
 
-class CardServices{
+class CartServices{
 
   //增加购物车
   static addCart(

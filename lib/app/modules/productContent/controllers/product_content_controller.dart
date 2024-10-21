@@ -231,7 +231,7 @@ class ProductContentController extends GetxController{
   //加入购物车
   void addCart() {
     setSelectedAttr();
-    CardServices.addCart(pcontent.value,selectedAttr.value,buyNum.value);
+    CartServices.addCart(pcontent.value,selectedAttr.value,buyNum.value);
     Get.back();
     Get.snackbar("提示?","加入购物车成功");
   }

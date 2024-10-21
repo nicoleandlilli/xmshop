@@ -24,7 +24,7 @@ class CartController extends GetxController{
   }
 
   void getCartListData() async {
-    var tempList =await CardServices.getCartList();
+    var tempList =await CartServices.getCartList();
     cartList.value=tempList;
     update();
   }
@@ -39,7 +39,7 @@ class CartController extends GetxController{
       tempList.add(cartList[i]);
     }
     cartList.value=tempList;
-    CardServices.setCartList(tempList);
+    CartServices.setCartList(tempList);
     update();
   }
   // 减少数量
@@ -56,7 +56,23 @@ class CartController extends GetxController{
       tempList.add(cartList[i]);
     }
     cartList.value=tempList;
-    CardServices.setCartList(tempList);
+    CartServices.setCartList(tempList);
+    update();
+  }
+
+
+  //选中item
+  void checkCartItem(cartItem){
+    var tempList=[];
+    for (var i = 0; i < cartList.length; i++) {
+      if(cartList[i]["_id"]==cartItem["_id"]&&cartList[i]["selectedAttr"]==cartItem["selectedAttr"]){
+        cartList[i]["checked"]=!cartList[i]["checked"];
+      }
+      tempList.add(cartList[i]);
+    }
+    cartList.value=tempList;
+    CartServices.setCartList(tempList);
+    // checkedAllBox.value=isCheckedAll();
     update();
   }
 }
