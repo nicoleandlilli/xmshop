@@ -60,6 +60,7 @@ class UserView extends GetView{
                 ),
               ),
 
+              //用户资金信息
               Container(
                 height: ScreenAdapter.height(180),
                 margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
@@ -138,6 +139,21 @@ class UserView extends GetView{
                           ],
                         ))
                   ],
+                ),
+              ),
+
+              //广告
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
+                child: Container(
+                  width: ScreenAdapter.width(1008),
+                  height: ScreenAdapter.height(300),
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          image: AssetImage("assets/images/user_ad1.png"),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
                 ),
               ),
             ],
