@@ -48,11 +48,11 @@ class AppPages {
       binding: ProductContentBinding(),
     ),
 
-    // GetPage(
-    //   name: Paths.CART,
-    //   page: ()=>const CartView(),
-    //   binding: CartBinding(),
-    // ),
+    GetPage(
+      name: Paths.CART,
+      page: ()=>CartView(),
+      // binding: CartBinding(),
+    ),
 
     // GetPage(
     //   name: _Paths.CATEGORY,

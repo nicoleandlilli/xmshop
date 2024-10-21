@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:xmeshop/app/modules/cart/views/cart_item_num_view.dart';
 import '../../../services/screenAdapter.dart';
 import '../controllers/cart_controller.dart';
 import "cart_item_view.dart";
 
-class CartView extends GetView<CartController>{
-  const CartView({super.key});
+//注意CartView在多个地方调用了  需要手动获取CartController
+class CartView extends GetView{
+  @override
+  final CartController controller=Get.put(CartController());
+  CartView({super.key});
 
 
   @override

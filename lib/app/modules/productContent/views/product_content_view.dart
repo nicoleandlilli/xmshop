@@ -6,6 +6,7 @@ import 'package:xmeshop/app/modules/productContent/views/product_content_cart_it
 import 'package:xmeshop/app/modules/productContent/views/second_page_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/first_page_view.dart';
 import 'package:xmeshop/app/modules/productContent/views/third_page_view.dart';
+import '../../../routes/app_routes.dart';
 import '../../../services/screenAdapter.dart';
 import '../../cart/views/cart_item_num_view.dart';
 
@@ -443,14 +444,19 @@ class ProductContentView extends GetView<ProductContentController>{
               SizedBox(
                 width: ScreenAdapter.width(200),
                 height:   ScreenAdapter.height(160),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
-                    const Icon(Icons.shopping_cart),
-                    Text("购物车",style: TextStyle(
-                        fontSize: ScreenAdapter.fontSize(32)
-                    ),)
-                  ],
+                child: InkWell(
+                  onTap: (){
+                    Get.toNamed(Paths.CART);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:  [
+                      const Icon(Icons.shopping_cart),
+                      Text("购物车",style: TextStyle(
+                          fontSize: ScreenAdapter.fontSize(32)
+                      ),)
+                    ],
+                  ),
                 ),
               ),
               Expanded(
