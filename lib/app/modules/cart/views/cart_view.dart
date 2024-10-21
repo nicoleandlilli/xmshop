@@ -59,7 +59,7 @@ class CartView extends GetView{
                       children: [
                         Row(
                           children: [
-                            Checkbox(value: controller.checkedAllBox.value, onChanged:(value){
+                            Checkbox(activeColor: Colors.red,value: controller.checkedAllBox.value, onChanged:(value){
                               if (kDebugMode) {
                                 print(value);
                               }

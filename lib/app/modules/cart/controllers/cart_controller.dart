@@ -27,6 +27,7 @@ class CartController extends GetxController{
   void getCartListData() async {
     var tempList =await CartServices.getCartList();
     cartList.value=tempList;
+    checkedAllBox.value=isCheckedAll();
     update();
   }
 
@@ -73,7 +74,7 @@ class CartController extends GetxController{
     }
     cartList.value=tempList;
     CartServices.setCartList(tempList);
-    // checkedAllBox.value=isCheckedAll();
+    checkedAllBox.value=isCheckedAll();
     update();
   }
 
@@ -88,6 +89,19 @@ class CartController extends GetxController{
     cartList.value=tempList;
     CartServices.setCartList(tempList);
     update();
+  }
+
+  //判断是否全选
+  bool isCheckedAll(){
+    if(cartList.isNotEmpty){
+      for (var i = 0; i < cartList.length; i++) {
+        if(cartList[i]["checked"]==false){
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
   }
 }
 
