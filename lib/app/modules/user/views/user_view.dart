@@ -37,7 +37,7 @@ class UserView extends GetView{
             ],
           ),
           body: ListView(
-            padding: EdgeInsets.all(ScreenAdapter.height(20)),
+            padding: EdgeInsets.all(ScreenAdapter.height(28)),
             children: [
               //用户头像  登录注册
               Container(
@@ -56,6 +56,87 @@ class UserView extends GetView{
                     Text("登录/注册", style: TextStyle(fontSize: ScreenAdapter.fontSize(46)),),
                     SizedBox(width: ScreenAdapter.width(40),),
                     Icon(Icons.arrow_forward_ios, size: ScreenAdapter.fontSize(34),color: Colors.black54,),
+                  ],
+                ),
+              ),
+
+              Container(
+                height: ScreenAdapter.height(180),
+                margin: EdgeInsets.only(top: ScreenAdapter.height(50)),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("-",style: TextStyle(
+                              fontSize: ScreenAdapter.fontSize(80),
+                              fontWeight: FontWeight.bold,
+                            ),),
+                            Text("米金",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(34),
+                                    color: Colors.black45)),
+                          ],
+                        ),
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "-",
+                              style:
+                              TextStyle(fontSize: ScreenAdapter.fontSize(80)),
+                            ),
+                            Text("优惠券",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(34),
+                                    color: Colors.black45))
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("-",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(80))),
+                            Text("红包",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(34),
+                                    color: Colors.black45))
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("-",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(80))),
+                            Text("最高额度",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(34),
+                                    color: Colors.black45))
+                          ],
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Icon(Icons.bookmarks_outlined),
+                            Text("钱包",
+                                style: TextStyle(
+                                    fontSize: ScreenAdapter.fontSize(34),
+                                    color: Colors.black45))
+                          ],
+                        ))
                   ],
                 ),
               ),
