@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class RegisterStepTwoController extends GetxController {
-  //TODO: Implement RegisterStepTwoController
-
-  final count = 0.obs;
+  final TextEditingController editingController = TextEditingController();
+  HttpsClient httpsClient = HttpsClient();
+  // String tel = Get.arguments["tel"];
+  RxInt seconds = 10.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,7 @@ class RegisterStepTwoController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+}
+
+class HttpsClient {
 }
