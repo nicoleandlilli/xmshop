@@ -14,7 +14,7 @@ class ProductListController extends GetxController{
   String sort = "";
   RxBool hasData = true.obs;
   RxList<PListModelItem> pList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
-  HttpClient httpClient = HttpClient();
+  HttpsClient httpClient = HttpsClient();
   ScrollController scrollController=ScrollController();
   GlobalKey<ScaffoldState> scaffoldGlobalKey=GlobalKey<ScaffoldState>();
 

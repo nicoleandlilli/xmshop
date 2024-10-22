@@ -38,7 +38,7 @@ class CartItemView extends GetView {
             width: ScreenAdapter.width(260),
             padding: EdgeInsets.all(ScreenAdapter.height(24)),
             margin: EdgeInsets.only(right: ScreenAdapter.width(20)),
-            child: Image.network(HttpClient.replaceUri(cartItem["pic"]),
+            child: Image.network(HttpsClient.replaceUri(cartItem["pic"]),
                 fit: BoxFit.fitHeight),
           ),
           Expanded(

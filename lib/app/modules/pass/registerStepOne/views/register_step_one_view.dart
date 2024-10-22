@@ -10,7 +10,7 @@ import '../../../../widget/passTextField.dart';
 import '../controllers/register_step_one_controller.dart';
 
 class RegisterStepOneView extends GetView<RegisterStepOneController> {
-  const RegisterStepOneView({Key? key}) : super(key: key);
+  const RegisterStepOneView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +38,18 @@ class RegisterStepOneView extends GetView<RegisterStepOneController> {
           PassButton(
               text: "下一步",
               onPressed: () async {
-                // if (GetUtils.isPhoneNumber(controller.editingController.text) && controller.editingController.text.length==11) {
-                //   var flag = await controller.sendCode();
-                //   if (flag) {
-                //     Get.toNamed("/register-step-two",arguments: {
-                //       "tel":controller.editingController.text
-                //     });
-                //   } else {
-                //     Get.snackbar("提示信息!", "网络异常");
-                //   }
-                // } else {
-                //   Get.snackbar("提示信息!", "手机号格式不合法");
-                // }
-                Get.toNamed(Paths.REGISTER_STEP_TWO);
+                if (GetUtils.isPhoneNumber(controller.editingController.text) && controller.editingController.text.length==11) {
+                  var flag = await controller.sendCode();
+                  if (flag) {
+                    Get.toNamed("/register-step-two",arguments: {
+                      "tel":controller.editingController.text
+                    });
+                  } else {
+                    Get.snackbar("提示信息!", "网络异常");
+                  }
+                } else {
+                  Get.snackbar("提示信息!", "手机号格式不合法");
+                }
               }),
 
           Container(

@@ -12,7 +12,7 @@ import '../../../models/pcontent_model.dart';
 class ProductContentController extends GetxController{
 
   final ScrollController scrollController = ScrollController();
-  HttpClient httpClient = HttpClient();
+  HttpsClient httpClient = HttpsClient();
   GlobalKey gk1 = GlobalKey();
   GlobalKey gk2 = GlobalKey();
   GlobalKey gk3 = GlobalKey();

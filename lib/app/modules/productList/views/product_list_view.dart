@@ -72,7 +72,7 @@ class ProductListView extends GetView<ProductListController>{
                       padding: EdgeInsets.all(ScreenAdapter.width(60)),
                       width: ScreenAdapter.width(400),
                       height: ScreenAdapter.height(460),
-                      child: Image.network("${HttpClient.replaceUri(item.pic)}",fit: BoxFit.cover,),
+                      child: Image.network("${HttpsClient.replaceUri(item.pic)}",fit: BoxFit.cover,),
                       // child: Text("11111111111111111"),
                     ),
                     Expanded(

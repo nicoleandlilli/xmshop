@@ -21,7 +21,7 @@ class FirstPageView extends GetView {
           //图片
           AspectRatio(
             aspectRatio: 1 / 1,
-            child: Image.network(HttpClient.replaceUri(controller.pcontent.value.pic!),
+            child: Image.network(HttpsClient.replaceUri(controller.pcontent.value.pic!),
                 fit: BoxFit.cover),
           ),
           //标题

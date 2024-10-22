@@ -95,7 +95,7 @@ class CategoryView extends GetView<CategoryController>{
                 Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  child: Image.network(HttpClient.replaceUri(controller.rightCategoryList[index].pic),fit: BoxFit.fitHeight,),
+                  child: Image.network(HttpsClient.replaceUri(controller.rightCategoryList[index].pic),fit: BoxFit.fitHeight,),
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(10), 0, 0),
                   child: Text(controller.rightCategoryList[index].title,style: TextStyle(fontSize: ScreenAdapter.fontSize(32)),),

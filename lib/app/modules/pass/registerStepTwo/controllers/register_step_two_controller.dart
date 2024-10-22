@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:xmeshop/app/services/http_client.dart';
 
 class RegisterStepTwoController extends GetxController {
   final TextEditingController editingController = TextEditingController();
@@ -23,5 +24,4 @@ class RegisterStepTwoController extends GetxController {
 
 }
 
-class HttpsClient {
-}
+

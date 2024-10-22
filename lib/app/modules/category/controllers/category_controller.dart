@@ -9,7 +9,7 @@ class CategoryController extends GetxController{
   RxInt selectIndex = 0.obs;
   RxList<CategoryModelItem> leftCategoryList = <CategoryModelItem>[].obs;
   RxList<CategoryModelItem> rightCategoryList = <CategoryModelItem>[].obs;
-  HttpClient httpClient = HttpClient();
+  HttpsClient httpClient = HttpsClient();
 
   @override
   void onInit() {
