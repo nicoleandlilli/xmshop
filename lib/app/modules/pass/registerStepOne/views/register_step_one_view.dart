@@ -41,7 +41,7 @@ class RegisterStepOneView extends GetView<RegisterStepOneController> {
                 if (GetUtils.isPhoneNumber(controller.editingController.text) && controller.editingController.text.length==11) {
                   var flag = await controller.sendCode();
                   if (flag) {
-                    Get.toNamed("/register-step-two",arguments: {
+                    Get.toNamed(Paths.REGISTER_STEP_TWO,arguments: {
                       "tel":controller.editingController.text
                     });
                   } else {
