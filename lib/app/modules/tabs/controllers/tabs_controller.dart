@@ -8,8 +8,10 @@ import 'package:xmeshop/app/modules/user/views/user_view.dart';
 
 class TabsController extends GetxController{
 
+  //用于控制默认加载的tabs选项
   RxInt currentIndex = 0.obs;
-  PageController pageController=PageController(initialPage: 0);
+  PageController pageController=Get.arguments!=null?PageController(initialPage:Get.arguments["initialPage"]): PageController(initialPage:0);
+
   final List<Widget> pages= [
     const HomeView(),
     const CategoryView(),
@@ -20,6 +22,10 @@ class TabsController extends GetxController{
 
   @override
   void onInit() {
+    if(Get.arguments!=null){
+      currentIndex.value=Get.arguments["initialPage"];
+      update();
+    }
     super.onInit();
   }
 
