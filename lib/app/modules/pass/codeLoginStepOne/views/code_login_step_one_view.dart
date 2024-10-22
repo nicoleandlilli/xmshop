@@ -5,8 +5,8 @@ import 'package:xmeshop/app/modules/pass/codeLoginStepOne/controllers/code_login
 
 import '../../../../services/kee_alive_wrapper.dart';
 
-class SampleView extends GetView<CodeLoginStepOneController>{
-  const SampleView({super.key});
+class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
+  const CodeLoginStepOneView({super.key});
 
   @override
   Widget build(BuildContext context) {
