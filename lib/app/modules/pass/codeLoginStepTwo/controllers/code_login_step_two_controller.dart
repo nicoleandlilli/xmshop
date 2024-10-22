@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class CodeLoginStepTwoController extends GetxController {
-  //TODO: Implement CodeLoginStepTwoController
 
-  final count = 0.obs;
+  final TextEditingController editingController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +20,4 @@ class CodeLoginStepTwoController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
