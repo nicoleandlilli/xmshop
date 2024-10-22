@@ -10,12 +10,15 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
 
   @override
   Widget build(BuildContext context) {
-    return const KeepAliveWrapper(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          actions: [TextButton(onPressed: () {}, child: Text("帮助"))],),
+
           body: Center(
             child:  Text("GiveView"),
           ),
-        )
     );
   }
 

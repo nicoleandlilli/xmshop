@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:xmeshop/app/services/ncFonts.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../../services/kee_alive_wrapper.dart';
 
 class UserView extends GetView{
@@ -54,7 +55,13 @@ class UserView extends GetView{
                       ),
                     ),
                     SizedBox(width: ScreenAdapter.width(40),),
-                    Text("登录/注册", style: TextStyle(fontSize: ScreenAdapter.fontSize(46)),),
+                    InkWell(
+                      onTap: () {
+                        Get.toNamed(Paths.CODE_LOGIN_STEP_ONE);
+                      },
+                      child: Text("登录/注册",
+                          style: TextStyle(fontSize: ScreenAdapter.fontSize(46))),
+                    ),
                     SizedBox(width: ScreenAdapter.width(40),),
                     Icon(Icons.arrow_forward_ios, size: ScreenAdapter.fontSize(34),color: Colors.black54,),
                   ],
