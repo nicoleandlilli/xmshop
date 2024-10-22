@@ -49,15 +49,17 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
             Get.toNamed(Paths.CODE_LOGIN_STEP_TWO);
           }),
 
+          SizedBox(height: ScreenAdapter.height(40)),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(onPressed: (){
-
-              }, child: const Text("忘记密码")),
+                Get.toNamed(Paths.REGISTER_STEP_ONE);
+              }, child: const Text("新用户注册")),
               TextButton(onPressed: (){
-                Get.toNamed(Paths.PASS_LOGIN);
-              }, child: const Text("其他登录方式"))
+                Get.toNamed("/pass-login");
+              }, child: const Text("账户密码登录"))
             ],
           ),
 
