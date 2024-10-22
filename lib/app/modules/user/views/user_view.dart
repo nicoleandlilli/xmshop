@@ -57,7 +57,8 @@ class UserView extends GetView{
                     SizedBox(width: ScreenAdapter.width(40),),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(Paths.CODE_LOGIN_STEP_ONE);
+                        // Get.toNamed(Paths.CODE_LOGIN_STEP_ONE);
+                        Get.toNamed(Paths.REGISTER_STEP_ONE);
                       },
                       child: Text("登录/注册",
                           style: TextStyle(fontSize: ScreenAdapter.fontSize(46))),
