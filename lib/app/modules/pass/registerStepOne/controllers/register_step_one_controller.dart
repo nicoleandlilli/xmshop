@@ -1,9 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class RegisterStepOneController extends GetxController {
-  //TODO: Implement RegisterStepOneController
-
-  final count = 0.obs;
+  TextEditingController editingController=TextEditingController();
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +18,4 @@ class RegisterStepOneController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }

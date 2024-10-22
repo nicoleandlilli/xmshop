@@ -4,7 +4,8 @@ import '../services/screenAdapter.dart';
 class PassTextFiled extends StatelessWidget {
   final String hintText;
   final void Function(String)? onChanged;
-  const PassTextFiled({super.key,required this.hintText,this.onChanged});
+  final TextEditingController? controller;
+  const PassTextFiled({super.key,required this.hintText,this.onChanged, this. controller});
 
   @override
   Widget build(BuildContext context) {
