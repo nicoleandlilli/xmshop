@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -71,17 +72,21 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
               enableActiveFill: true,
               controller: controller.editingController, //TextFiled控制器
               onCompleted: (v) async{
-                // var flag = await controller.validateCode();
-                // if (flag) {
-                //   Get.toNamed("/register-step-three");
-                // } else {
-                //   Get.snackbar("提示信息!", "验证码输入错误");
-                // }
-                // print("Completed");
+                var flag = await controller.validateCode();
+                if (flag) {
+                  Get.toNamed(Paths.REGISTER_STEP_THREE );
+                } else {
+                  Get.snackbar("提示信息!", "验证码输入错误");
+                }
+                if (kDebugMode) {
+                  print("Completed");
+                }
 
               },
               onChanged: (value) {
-                print(value);
+                if (kDebugMode) {
+                  print(value);
+                }
               },
               beforeTextPaste: (text) {
                 print("Allowing to paste $text");
@@ -97,9 +102,9 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
                 Obx(() => controller.seconds.value > 0
                     ? TextButton(onPressed: null, child: Text("${controller.seconds.value}秒后重新发送"))
                     : TextButton(onPressed: () {
-                  // controller.sendCode();
+                  controller.sendCode();
                 }, child: const Text("重新发送验证码"))),
-                TextButton(onPressed: () {}, child: Text("帮助")),
+                TextButton(onPressed: () {}, child: const Text("帮助")),
               ],
             ),
           ),
