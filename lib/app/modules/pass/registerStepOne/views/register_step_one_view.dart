@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../models/message.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../services/screenAdapter.dart';
 import '../../../../widget/logo.dart';
@@ -39,13 +40,13 @@ class RegisterStepOneView extends GetView<RegisterStepOneController> {
               text: "下一步",
               onPressed: () async {
                 if (GetUtils.isPhoneNumber(controller.editingController.text) && controller.editingController.text.length==11) {
-                  var flag = await controller.sendCode();
-                  if (flag) {
-                    Get.toNamed(Paths.REGISTER_STEP_TWO,arguments: {
+                  MessageModel result = await controller.sendCode();
+                  if (result.success) {
+                    Get.toNamed("/register-step-two",arguments: {
                       "tel":controller.editingController.text
                     });
                   } else {
-                    Get.snackbar("提示信息!", "网络异常");
+                    Get.snackbar("提示信息!", result.message);
                   }
                 } else {
                   Get.snackbar("提示信息!", "手机号格式不合法");
