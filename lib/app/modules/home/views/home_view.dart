@@ -106,7 +106,7 @@ class HomeView extends GetView<HomeController>{
                       children: [
                         Container(
                           padding: EdgeInsets.all(ScreenAdapter.width(10)),
-                          child: Image.network(HttpClient.replaceUri(item.pic), fit: BoxFit.cover,),
+                          child: Image.network(HttpsClient.replaceUri(item.pic), fit: BoxFit.cover,),
                         ),
                         Container(
                           padding: EdgeInsets.all(ScreenAdapter.width(10)),
@@ -168,7 +168,7 @@ class HomeView extends GetView<HomeController>{
                     height: ScreenAdapter.height(738),
                     child: Obx(()=> Swiper(
                       itemBuilder: (context, index){
-                        return Image.network(HttpClient.replaceUri(controller.bestSellingSwiperList[index].pic),fit: BoxFit.fill,);
+                        return Image.network(HttpsClient.replaceUri(controller.bestSellingSwiperList[index].pic),fit: BoxFit.fill,);
                       },
                       itemCount: controller.bestSellingSwiperList.value.length,
                       pagination: SwiperPagination(
@@ -230,7 +230,7 @@ class HomeView extends GetView<HomeController>{
                                         flex: 2,
                                         child: Padding(
                                           padding: EdgeInsets.all(ScreenAdapter.height(8)),
-                                          child: Image.network(HttpClient.replaceUri(value.pic),fit:BoxFit.cover),
+                                          child: Image.network(HttpsClient.replaceUri(value.pic),fit:BoxFit.cover),
                                         ),
                                       ),
                                     ],
@@ -444,7 +444,7 @@ class HomeView extends GetView<HomeController>{
                       alignment: Alignment.center,
                       width: ScreenAdapter.width(136),
                       height: ScreenAdapter.height(136),
-                      child: Image.network(HttpClient.replaceUri(controller.categoryList[index*10+i].pic), fit: BoxFit.fitHeight,),
+                      child: Image.network(HttpsClient.replaceUri(controller.categoryList[index*10+i].pic), fit: BoxFit.fitHeight,),
                     ),
                     // Padding(padding: EdgeInsets.fromLTRB(0, ScreenAdapter.height(4), 0, 0), child: Text("手机", style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),))
                     Text(controller.categoryList[index*10+i].title, style: TextStyle(fontSize: ScreenAdapter.fontSize(34)),),
@@ -485,7 +485,7 @@ class HomeView extends GetView<HomeController>{
       height: ScreenAdapter.height(472),
       child: Obx(() => Swiper(
         itemBuilder: (context, index){
-          return Image.network(HttpClient.replaceUri(controller.swiperList[index].pic),fit: BoxFit.fill,);
+          return Image.network(HttpsClient.replaceUri(controller.swiperList[index].pic),fit: BoxFit.fill,);
         },
         itemCount: controller.swiperList.value.length,
         pagination: const SwiperPagination(

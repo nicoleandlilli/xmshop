@@ -21,7 +21,7 @@ class HomeController extends GetxController{
   RxList<FocusModelItem> bestSellingSwiperList=<FocusModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<PListModelItem> bestSellingPList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
   RxList<PListModelItem> popularProductList=<PListModelItem> [].obs;   //注意，需要定义成响应式数据
-  HttpClient httpClient = HttpClient();
+  HttpsClient httpClient = HttpsClient();
 
   @override
   void onInit() {
