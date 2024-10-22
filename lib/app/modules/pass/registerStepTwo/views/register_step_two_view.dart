@@ -32,8 +32,7 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
                 const Text("请输入验证码",
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: ScreenAdapter.height(20)),
-                // Text("已发送至 ${controller.tel}")
-                Text("已发送至 12345678901")
+                Text("已发送至 ${controller.tel}")
               ],
             ),
           ),
@@ -109,14 +108,14 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
               onPressed: () async {
                 // 隐藏键盘
                 FocusScope.of(context).requestFocus(FocusNode());
-                // var flag = await controller.validateCode();
-                // if (flag) {
-                //   Get.toNamed("/register-step-three");
-                // } else {
-                //   Get.snackbar("提示信息!", "验证码输入错误");
-                // }
+                var flag = await controller.validateCode();
+                if (flag) {
+                  Get.toNamed(Paths.REGISTER_STEP_THREE);
+                } else {
+                  Get.snackbar("提示信息!", "验证码输入错误");
+                }
 
-                Get.toNamed(Paths.REGISTER_STEP_THREE);
+
               })
         ],
       ),
