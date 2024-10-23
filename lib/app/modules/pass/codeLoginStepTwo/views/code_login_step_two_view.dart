@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../models/message.dart';
 import '../../../../services/screenAdapter.dart';
 import '../../../../widget/logo.dart';
 import '../../../../widget/passButton.dart';
@@ -26,7 +27,7 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
           Container(
             margin: EdgeInsets.only(top: ScreenAdapter.height(60)),
             padding: EdgeInsets.all(ScreenAdapter.width(40)),
-            child:  PinCodeTextField(
+            child:   PinCodeTextField(
               autoFocus: true, //进入就弹出键盘
               keyboardType: TextInputType.number, //调用数字键盘
               length: 6,
@@ -57,8 +58,15 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
               animationDuration: const Duration(milliseconds: 300),
               enableActiveFill: true,
               controller: controller.editingController, //TextFiled控制器
-              onCompleted: (v) {
-                print("Completed");
+              onCompleted: (v) async {
+                // 隐藏键盘
+                FocusScope.of(context).requestFocus(FocusNode());
+                MessageModel result = await controller.doLogin();
+                if (result.success) {
+                  Get.offAllNamed("/tabs", arguments: {"initialPage": 4});
+                } else {
+                  Get.snackbar("提示信息", result.message);
+                }
               },
               onChanged: (value) {
                 print(value);
@@ -75,19 +83,19 @@ class CodeLoginStepTwoView extends GetView<CodeLoginStepTwoController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(onPressed: () {}, child: Text("重新发送验证码")),
+                Obx(() => controller.seconds.value == 0
+                    ? TextButton(
+                    onPressed: () {
+                      controller.sendCode();
+                    },
+                    child: const Text("重新发送验证码"))
+                    : TextButton(
+                    onPressed: null,
+                    child: Text("${controller.seconds.value}秒后重发送"))),
                 TextButton(onPressed: () {}, child: Text("帮助")),
               ],
             ),
           ),
-
-          PassButton(
-              text: "获取验证码",
-              onPressed: () {
-                print(controller.editingController.text);
-                // 隐藏键盘
-                FocusScope.of(context).requestFocus(FocusNode());
-              }),
         ],
       ),
 
