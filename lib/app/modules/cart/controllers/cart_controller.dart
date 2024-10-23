@@ -5,6 +5,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../../../services/cardServices.dart';
+import '../../../services/userServices.dart';
 
 class CartController extends GetxController{
 
@@ -102,6 +103,39 @@ class CartController extends GetxController{
       return true;
     }
     return false;
+  }
+
+  //获取要结算的商品
+  getCheckListData() {
+    List tempList = [];
+    for (var i = 0; i < cartList.length; i++) {
+      if (cartList[i]["checked"] == true) {
+        tempList.add(cartList[i]);
+      }
+    }
+    return tempList;
+  }
+
+  //判断用户有没有登录
+  Future<bool> isLogin() async {
+    return await UserServices.getUserLoginState();
+  }
+
+  checkout() async {
+    bool loginState = await isLogin();
+    List checkListData=getCheckListData();
+    if (loginState) {
+      //判断购物车里面有没有要结算的商品
+      if(checkListData.isNotEmpty){
+        Get.toNamed("/checkout");
+      }else{
+        Get.snackbar("提示信息!", "购物车中没有要结算的商品");
+      }
+    } else {
+      //执行跳转
+      Get.toNamed("/code-login-step-one");
+      Get.snackbar("提示信息!", "您还有没有登录，请先登录");
+    }
   }
 }
 

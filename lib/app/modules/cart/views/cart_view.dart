@@ -89,7 +89,7 @@ class CartView extends GetView{
 
                                 onPressed: (){
                                   //判断用户有没有登录
-                                  Get.toNamed(Paths.CHECKOUT);
+                                  controller.checkout();
 
                                 }, child: Text("结算")),
                           ],
