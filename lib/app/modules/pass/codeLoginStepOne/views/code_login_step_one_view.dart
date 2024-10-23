@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/pass/codeLoginStepOne/controllers/code_login_step_one_controller.dart';
 
+import '../../../../models/message.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../services/kee_alive_wrapper.dart';
 import '../../../../services/screenAdapter.dart';
@@ -31,6 +32,7 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
 
           //输入手机号
           PassTextFiled(
+              controller: controller.telController,
               hintText: "请输入手机号",
               onChanged: (value) {
                 print(value);
@@ -42,11 +44,23 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
 
 
           //登录按钮
-          PassButton(text: "获取验证码", onPressed: (){
+          PassButton(text: "获取验证码", onPressed: () async{
             if (kDebugMode) {
               print("获取验证码");
             }
-            Get.toNamed(Paths.CODE_LOGIN_STEP_TWO);
+            if (!GetUtils.isPhoneNumber(controller.telController.text) ||
+                controller.telController.text.length != 11) {
+              Get.snackbar("提示信息!", "手机号格式不合法");
+            }else{
+              MessageModel result=await controller.sendCode();
+              if(result.success){
+                Get.toNamed(Paths.CODE_LOGIN_STEP_TWO,arguments: {
+                  "tel":controller.telController.text
+                });
+              }else{
+                Get.snackbar("提示信息!", result.message);
+              }
+            }
           }),
 
           SizedBox(height: ScreenAdapter.height(40)),
