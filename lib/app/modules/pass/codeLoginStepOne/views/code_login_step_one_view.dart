@@ -59,7 +59,7 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
                 // });
 
                 //替换路由
-                Get.offAndToNamed("/code-login-step-two",arguments: {
+                Get.offAndToNamed(Paths.CODE_LOGIN_STEP_TWO,arguments: {
                   "tel":controller.telController.text
                 });
               }else{
@@ -77,7 +77,9 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
                 Get.toNamed(Paths.REGISTER_STEP_ONE);
               }, child: const Text("新用户注册")),
               TextButton(onPressed: (){
-                Get.toNamed("/pass-login");
+                // Get.toNamed("/pass-login");
+                //替换路由
+                Get.offAndToNamed(Paths.PASS_LOGIN);
               }, child: const Text("账户密码登录"))
             ],
           ),
