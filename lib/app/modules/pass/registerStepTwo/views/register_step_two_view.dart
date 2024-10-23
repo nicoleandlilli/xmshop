@@ -111,23 +111,23 @@ class RegisterStepTwoView extends GetView<RegisterStepTwoController> {
               ],
             ),
           ),
-          PassButton(
-              text: "下一步",
-              onPressed: () async {
-                // 隐藏键盘
-                FocusScope.of(context).requestFocus(FocusNode());
-                var flag = await controller.validateCode();
-                if (flag) {
-                  Get.toNamed(Paths.REGISTER_STEP_THREE, arguments: {
-                    "tel": controller.tel,
-                    "code": controller.editingController.text,
-                  });
-                } else {
-                  Get.snackbar("提示信息!", "验证码输入错误");
-                }
-
-
-              })
+          // PassButton(
+          //     text: "下一步",
+          //     onPressed: () async {
+          //       // 隐藏键盘
+          //       FocusScope.of(context).requestFocus(FocusNode());
+          //       var flag = await controller.validateCode();
+          //       if (flag) {
+          //         Get.toNamed(Paths.REGISTER_STEP_THREE, arguments: {
+          //           "tel": controller.tel,
+          //           "code": controller.editingController.text,
+          //         });
+          //       } else {
+          //         Get.snackbar("提示信息!", "验证码输入错误");
+          //       }
+          //
+          //
+          //     })
         ],
       ),
     );
