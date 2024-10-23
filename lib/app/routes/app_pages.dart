@@ -8,6 +8,8 @@ import 'package:xmeshop/app/modules/productList/views/product_list_view.dart';
 
 import '../modules/cart/bingdings/product_content_binding.dart';
 import '../modules/cart/views/cart_view.dart';
+import '../modules/checkout/bindings/checkout_binding.dart';
+import '../modules/checkout/views/checkout_view.dart';
 import '../modules/pass/codeLoginStepOne/bindings/code_login_step_one_binding.dart';
 import '../modules/pass/codeLoginStepOne/views/code_login_step_one_view.dart';
 import '../modules/pass/codeLoginStepTwo/bindings/code_login_step_two_binding.dart';
@@ -102,6 +104,12 @@ class AppPages {
       name: Paths.REGISTER_STEP_THREE,
       page: () => const RegisterStepThreeView(),
       binding: RegisterStepThreeBinding(),
+    ),
+
+    GetPage(
+      name: Paths.CHECKOUT,
+      page: () => const CheckoutView(),
+      binding: CheckoutBinding(),
     ),
 
     // GetPage(

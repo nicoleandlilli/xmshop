@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import '../../../routes/app_routes.dart';
 import '../../../services/screenAdapter.dart';
 import '../controllers/cart_controller.dart';
 import "cart_item_view.dart";
@@ -87,7 +88,8 @@ class CartView extends GetView{
                                             borderRadius: BorderRadius.circular(10)))),
 
                                 onPressed: (){
-
+                                  //判断用户有没有登录
+                                  Get.toNamed(Paths.CHECKOUT);
 
                                 }, child: Text("结算")),
                           ],
