@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../models/message.dart';
 import '../../../../services/screenAdapter.dart';
 import '../../../../widget/logo.dart';
-import '../../../../widget/passButton.dart';
 import '../controllers/code_login_step_two_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
