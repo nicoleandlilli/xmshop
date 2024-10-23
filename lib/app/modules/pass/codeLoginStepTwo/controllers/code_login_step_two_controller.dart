@@ -7,10 +7,13 @@ import 'package:get/get.dart';
 import '../../../../models/message.dart';
 import '../../../../services/http_client.dart';
 import '../../../../services/storage.dart';
+import '../../../user/controllers/user_controller.dart';
 
 class CodeLoginStepTwoController extends GetxController {
 
   final TextEditingController editingController = TextEditingController();
+  UserController userController =Get.find<UserController>();
+
   HttpsClient httpsClient = HttpsClient();
   String tel=Get.arguments["tel"];
   RxInt seconds = 10.obs;
@@ -20,8 +23,10 @@ class CodeLoginStepTwoController extends GetxController {
     super.onInit();
     countDown();
   }
+
   @override
   void onClose() {
+    userController.getUserInfo();
     super.onClose();
   }
   //倒计时的方法
