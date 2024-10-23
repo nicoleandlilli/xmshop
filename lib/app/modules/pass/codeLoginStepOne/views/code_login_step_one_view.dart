@@ -54,7 +54,12 @@ class CodeLoginStepOneView extends GetView<CodeLoginStepOneController>{
             }else{
               MessageModel result=await controller.sendCode();
               if(result.success){
-                Get.toNamed(Paths.CODE_LOGIN_STEP_TWO,arguments: {
+                // Get.toNamed(Paths.CODE_LOGIN_STEP_TWO,arguments: {
+                //   "tel":controller.telController.text
+                // });
+
+                //替换路由
+                Get.offAndToNamed("/code-login-step-two",arguments: {
                   "tel":controller.telController.text
                 });
               }else{
