@@ -33,6 +33,7 @@ class AddressAddView extends GetView<AddressAddController> {
                     Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: controller.nameController,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontSize: ScreenAdapter.fontSize(42)),
@@ -51,6 +52,7 @@ class AddressAddView extends GetView<AddressAddController> {
                     Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: controller.phoneController,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontSize: ScreenAdapter.fontSize(42)),
@@ -120,6 +122,7 @@ class AddressAddView extends GetView<AddressAddController> {
                     Expanded(
                         flex: 1,
                         child: TextField(
+                          controller: controller.addressController,
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontSize: ScreenAdapter.fontSize(42)),
@@ -135,10 +138,12 @@ class AddressAddView extends GetView<AddressAddController> {
           Padding(
             padding: EdgeInsets.all(ScreenAdapter.width(40)),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                controller.doAddAddress();
+              },
               child: Container(
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(251, 72, 5, 0.9),
+                    color: const Color.fromRGBO(251, 72, 5, 0.9),
                     borderRadius: BorderRadius.circular(20)),
                 height: ScreenAdapter.height(140),
                 alignment: Alignment.center,
