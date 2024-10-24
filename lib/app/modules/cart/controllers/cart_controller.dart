@@ -14,6 +14,7 @@ class CartController extends GetxController{
   RxBool checkedAllBox=false.obs;
 
   RxBool isEdit = false.obs;
+  RxDouble allPrice=0.0.obs;
 
   @override
   void onInit() {
@@ -32,6 +33,8 @@ class CartController extends GetxController{
     var tempList =await CartServices.getCartList();
     cartList.value=tempList;
     checkedAllBox.value=isCheckedAll();
+    //计算总价
+    computedAllPrice();
     update();
   }
 
@@ -46,6 +49,8 @@ class CartController extends GetxController{
     }
     cartList.value=tempList;
     CartServices.setCartList(tempList);
+    //计算总价
+    computedAllPrice();
     update();
   }
   // 减少数量
@@ -63,6 +68,8 @@ class CartController extends GetxController{
     }
     cartList.value=tempList;
     CartServices.setCartList(tempList);
+    //计算总价
+    computedAllPrice();
     update();
   }
 
@@ -79,6 +86,8 @@ class CartController extends GetxController{
     cartList.value=tempList;
     CartServices.setCartList(tempList);
     checkedAllBox.value=isCheckedAll();
+    //计算总价
+    computedAllPrice();
     update();
   }
 
@@ -92,6 +101,8 @@ class CartController extends GetxController{
     }
     cartList.value=tempList;
     CartServices.setCartList(tempList);
+    //计算总价
+    computedAllPrice();
     update();
   }
 
@@ -162,6 +173,17 @@ class CartController extends GetxController{
     CartServices.setCartList(tempList);
     update();
 
+  }
+
+  //计算总价
+  computedAllPrice(){
+    double tempAllPrice=0.0;
+    for (var i = 0; i < cartList.length; i++) {
+      if (cartList[i]["checked"] == true) {
+        tempAllPrice+=cartList[i]["price"]*cartList[i]["count"];
+      }
+    }
+    allPrice.value=tempAllPrice;
   }
 }
 
