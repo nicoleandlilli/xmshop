@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:xmeshop/app/modules/cart/views/cart_item_num_view.dart';
 
+import '../../../services/http_client.dart';
 import '../../../services/screenAdapter.dart';
 import '../controllers/checkout_controller.dart';
 
-class CheckoutView extends GetView<CheckoutController> {
-  Widget _checkoutItem() {
+class CheckoutView extends GetView<CheckoutController>{
+
+  Widget _checkoutItem(value) {
     return Container(
       padding: EdgeInsets.only(
           top: ScreenAdapter.height(20),
@@ -19,29 +22,29 @@ class CheckoutView extends GetView<CheckoutController> {
             width: ScreenAdapter.width(200),
             height: ScreenAdapter.width(200),
             padding: EdgeInsets.all(ScreenAdapter.width(20)),
-            child: Image.network("https://www.itying.com/images/shouji.png",
+            child: Image.network(HttpsClient.replaceUri(value["pic"]),
                 fit: BoxFit.fitHeight),
           ),
           Expanded(
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "小米5A",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: ScreenAdapter.height(10)),
-              const Text("白色 128GB"),
-              SizedBox(height: ScreenAdapter.height(10)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("￥121", style: TextStyle(color: Colors.red)),
-                  Text("x2", style: TextStyle(color: Colors.black87))
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${value["title"]}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: ScreenAdapter.height(10)),
+                  Text("${value["selectedAttr"]}",),
+                  SizedBox(height: ScreenAdapter.height(10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:  [
+                      Text("￥${value["price"]}", style: TextStyle(color: Colors.red)),
+                      Text("x${value["count"]}", style: TextStyle(color: Colors.black87))
+                    ],
+                  )
                 ],
-              )
-            ],
-          ))
+              ))
         ],
       ),
     );
@@ -95,9 +98,14 @@ class CheckoutView extends GetView<CheckoutController> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
-          child: Column(
-            children: [_checkoutItem(), _checkoutItem(), _checkoutItem(), _checkoutItem(), _checkoutItem()],
-          ),
+          child: Obx(() => controller.checkoutList.isNotEmpty
+              ? Column(
+              children:
+              controller.checkoutList.map((value){
+                return  _checkoutItem(value);
+              }).toList()
+          )
+              : Text("")),
         ),
         SizedBox(
           height: ScreenAdapter.height(40),
@@ -198,7 +206,8 @@ class CheckoutView extends GetView<CheckoutController> {
         ));
   }
 
-  const CheckoutView({Key? key}) : super(key: key);
+  const CheckoutView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
