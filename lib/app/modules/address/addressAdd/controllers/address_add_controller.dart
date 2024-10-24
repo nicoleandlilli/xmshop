@@ -5,6 +5,7 @@ import '../../../../models/user_model.dart';
 import '../../../../services/http_client.dart';
 import '../../../../services/signServices.dart';
 import '../../../../services/userServices.dart';
+import '../../addressList/controllers/address_list_controller.dart';
 
 class AddressAddController extends GetxController {
   TextEditingController nameController = TextEditingController();
@@ -12,6 +13,9 @@ class AddressAddController extends GetxController {
   TextEditingController addressController = TextEditingController();
   RxString area = "".obs;
   HttpsClient httpsClient = HttpsClient();
+
+  AddressListController listController=Get.find<AddressListController>();
+
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +23,8 @@ class AddressAddController extends GetxController {
 
   @override
   void onClose() {
+    //销毁的时候更新listController.getAddressList
+    listController.getAddressList();
     super.onClose();
   }
 
