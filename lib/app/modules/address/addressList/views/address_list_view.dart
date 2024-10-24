@@ -85,7 +85,7 @@ class AddressListView extends GetView<AddressListController> {
                                   middleText: "您确定要删除吗?",
                                   confirm: ElevatedButton(
                                       onPressed: () {
-                                        // controller.deleteAddress(value.sId);
+                                        controller.deleteAddress(value.sId);
                                         Get.back();
                                       },
                                       child: const Text("确定")),
