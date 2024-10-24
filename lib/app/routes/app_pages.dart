@@ -6,6 +6,8 @@ import 'package:xmeshop/app/modules/productContent/views/product_content_view.da
 import 'package:xmeshop/app/modules/productList/bindings/product_list_binding.dart';
 import 'package:xmeshop/app/modules/productList/views/product_list_view.dart';
 
+import '../modules/address/addressList/bindings/address_list_binding.dart';
+import '../modules/address/addressList/views/address_list_view.dart';
 import '../modules/cart/bingdings/product_content_binding.dart';
 import '../modules/cart/views/cart_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
@@ -111,6 +113,22 @@ class AppPages {
       page: () => const CheckoutView(),
       binding: CheckoutBinding(),
     ),
+
+    GetPage(
+      name: Paths.ADDRESS_LIST,
+      page: () => const AddressListView(),
+      binding: AddressListBinding(),
+    ),
+    // GetPage(
+    //   name: _Paths.ADDRESS_ADD,
+    //   page: () => const AddressAddView(),
+    //   binding: AddressAddBinding(),
+    // ),
+    // GetPage(
+    //   name: _Paths.ADDRESS_EDIT,
+    //   page: () => const AddressEditView(),
+    //   binding: AddressEditBinding(),
+    // ),
 
     // GetPage(
     //   name: _Paths.CATEGORY,

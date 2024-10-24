@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xmeshop/app/modules/cart/views/cart_item_num_view.dart';
 
+import '../../../routes/app_routes.dart';
 import '../../../services/http_client.dart';
 import '../../../services/screenAdapter.dart';
 import '../controllers/checkout_controller.dart';
@@ -60,7 +61,10 @@ class CheckoutView extends GetView<CheckoutController>{
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(ScreenAdapter.width(20))),
-          child: const ListTile(
+          child: ListTile(
+            onTap: (){
+              Get.toNamed(Paths.ADDRESS_LIST);
+            },
             leading: Icon(Icons.add_location),
             title: Text("增加收货地址"),
             trailing: Icon(Icons.navigate_next),
