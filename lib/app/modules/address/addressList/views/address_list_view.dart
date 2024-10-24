@@ -26,61 +26,110 @@ class AddressListView extends GetView<AddressListController> {
             children: [
               Obx(() => controller.addressList.isNotEmpty
                   ? ListView(
-                  children:  controller.addressList.map((value) {
-                    return value.defaultAddress==1?Column(
+                  children: controller.addressList.map((value) {
+                    return value.defaultAddress == 1
+                        ? Column(
                       children: [
                         ListTile(
-                          onTap: (){
-                            controller.changeDefaultAddress(value.sId);
-                          },
-                          leading:const Icon(
+                          leading: const Icon(
                             Icons.check,
                             color: Colors.red,
                           ),
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${value.address}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: ScreenAdapter.fontSize(48)),
-                              ),
-                              SizedBox(height: ScreenAdapter.height(24)),
-                              Text("${value.name}  ${value.phone}"),
-                            ],
-                          ),
-                          trailing: const Icon(
-                            Icons.edit,
-                            color: Colors.blue,
-                          ),
+                          title: InkWell(
+                              onTap: () {
+                                controller
+                                    .changeDefaultAddress(value.sId);
+                              },
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${value.address}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                        ScreenAdapter.fontSize(48)),
+                                  ),
+                                  SizedBox(
+                                      height: ScreenAdapter.height(24)),
+                                  Text("${value.name}  ${value.phone}"),
+                                ],
+                              )),
+                          trailing: IconButton(
+                              onPressed: () {
+                                Get.toNamed("/address-edit",
+                                    arguments: {
+                                      "id": value.sId,
+                                      "name": value.name,
+                                      "phone": value.phone,
+                                      "address": value.address
+                                    });
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.blue,
+                              )),
                         ),
                         const Divider(),
                         SizedBox(height: ScreenAdapter.height(30))
                       ],
-                    ):Column(
+                    )
+                        : Column(
                       children: [
                         ListTile(
-                          onTap: (){
-                            controller.changeDefaultAddress(value.sId);
-                          },
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${value.address}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: ScreenAdapter.fontSize(48)),
-                              ),
-                              SizedBox(height: ScreenAdapter.height(24)),
-                              Text("${value.name}  ${value.phone}"),
-                            ],
+                          title: InkWell(
+                            onLongPress: () {
+                              Get.defaultDialog(
+                                  title: "提示信息!",
+                                  middleText: "您确定要删除吗?",
+                                  confirm: ElevatedButton(
+                                      onPressed: () {
+                                        // controller.deleteAddress(value.sId);
+                                        Get.back();
+                                      },
+                                      child: const Text("确定")),
+                                  cancel: ElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: const Text("取消")));
+                            },
+                            onTap: () {
+                              controller
+                                  .changeDefaultAddress(value.sId);
+                            },
+                            child: Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${value.address}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:
+                                      ScreenAdapter.fontSize(48)),
+                                ),
+                                SizedBox(
+                                    height: ScreenAdapter.height(24)),
+                                Text("${value.name}  ${value.phone}"),
+                              ],
+                            ),
                           ),
-                          trailing: const Icon(
-                            Icons.edit,
-                            color: Colors.blue,
-                          ),
+                          trailing: IconButton(
+                              onPressed: () {
+                                Get.toNamed("/address-edit",
+                                    arguments: {
+                                      "id": value.sId,
+                                      "name": value.name,
+                                      "phone": value.phone,
+                                      "address": value.address
+                                    });
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.blue,
+                              )),
                         ),
                         const Divider(),
                         SizedBox(height: ScreenAdapter.height(30))
