@@ -30,6 +30,8 @@ import '../modules/pass/registerStepThree/bindings/register_step_three_binding.d
 import '../modules/pass/registerStepThree/views/register_step_three_view.dart';
 import '../modules/pass/registerStepTwo/bindings/register_step_two_binding.dart';
 import '../modules/pass/registerStepTwo/views/register_step_two_view.dart';
+import '../modules/pay/bindings/pay_binding.dart';
+import '../modules/pay/views/pay_view.dart';
 import '../modules/productContent/bingdings/product_content_binding.dart';
 import '../modules/search/bingdings/tabs_binding.dart';
 import '../modules/search/views/search_view.dart';
@@ -134,6 +136,12 @@ class AppPages {
       name: Paths.ADDRESS_EDIT,
       page: () => const AddressEditView(),
       binding: AddressEditBinding(),
+    ),
+
+    GetPage(
+      name: Paths.PAY,
+      page: () => const PayView(),
+      binding: PayBinding(),
     ),
 
     // GetPage(

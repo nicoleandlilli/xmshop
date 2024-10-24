@@ -200,9 +200,7 @@ class CheckoutView extends GetView<CheckoutController>{
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)))),
                   onPressed: () {
-                    // //判断用户有没有登录
-
-                    // Get.toNamed("/checkout");
+                    controller.doCheckOut();
                   },
                   child: const Text("去付款"))
             ],

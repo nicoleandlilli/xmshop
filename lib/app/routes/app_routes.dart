@@ -19,6 +19,7 @@ abstract class Routes{
   static const ADDRESS_LIST =  Paths.ADDRESS_LIST;
   static const ADDRESS_ADD = Paths.ADDRESS_ADD;
   static const ADDRESS_EDIT =  Paths.ADDRESS_EDIT;
+  static const PAY = Paths.PAY;
 }
 
 abstract class Paths {
@@ -40,5 +41,6 @@ abstract class Paths {
   static const ADDRESS_LIST = '/address-list';
   static const ADDRESS_ADD = '/address-add';
   static const ADDRESS_EDIT = '/address-edit';
+  static const PAY = '/pay';
 }
 
