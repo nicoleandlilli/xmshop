@@ -7,7 +7,10 @@ import '../../../../services/screenAdapter.dart';
 import '../controllers/address_list_controller.dart';
 
 class AddressListView extends GetView<AddressListController> {
-  const AddressListView({Key? key}) : super(key: key);
+// class AddressListView extends GetView {
+
+  // AddressListController controller = Get.put(AddressListController());
+  const AddressListView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +26,13 @@ class AddressListView extends GetView<AddressListController> {
             children: [
               Obx(() => controller.addressList.isNotEmpty
                   ? ListView(
-                  children: controller.addressList.map((value) {
-                    return Column(
+                  children:  controller.addressList.map((value) {
+                    return value.defaultAddress==1?Column(
                       children: [
                         ListTile(
+                          onTap: (){
+                            controller.changeDefaultAddress(value.sId);
+                          },
                           leading:const Icon(
                             Icons.check,
                             color: Colors.red,
@@ -49,7 +55,34 @@ class AddressListView extends GetView<AddressListController> {
                             color: Colors.blue,
                           ),
                         ),
-                        Divider(),
+                        const Divider(),
+                        SizedBox(height: ScreenAdapter.height(30))
+                      ],
+                    ):Column(
+                      children: [
+                        ListTile(
+                          onTap: (){
+                            controller.changeDefaultAddress(value.sId);
+                          },
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${value.address}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: ScreenAdapter.fontSize(48)),
+                              ),
+                              SizedBox(height: ScreenAdapter.height(24)),
+                              Text("${value.name}  ${value.phone}"),
+                            ],
+                          ),
+                          trailing: const Icon(
+                            Icons.edit,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        const Divider(),
                         SizedBox(height: ScreenAdapter.height(30))
                       ],
                     );
