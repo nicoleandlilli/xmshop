@@ -13,6 +13,8 @@ class CartController extends GetxController{
   RxList cartList=[].obs;
   RxBool checkedAllBox=false.obs;
 
+  RxBool isEdit = false.obs;
+
   @override
   void onInit() {
     if (kDebugMode) {
@@ -139,6 +141,27 @@ class CartController extends GetxController{
       Get.toNamed("/code-login-step-one");
       Get.snackbar("提示信息!", "您还有没有登录，请先登录");
     }
+  }
+
+  //改变edit属性
+  changeEditState(){
+    isEdit.value=!isEdit.value;
+    update();
+  }
+  //删除购物车数据
+
+  deleteCartData(){
+    List tempList = [];
+    for (var i = 0; i < cartList.length; i++) {
+      if (cartList[i]["checked"] == false) {
+        tempList.add(cartList[i]);
+      }
+    }
+    //把没有选中的商品保存在cart里面
+    cartList.value = tempList;
+    CartServices.setCartList(tempList);
+    update();
+
   }
 }
 

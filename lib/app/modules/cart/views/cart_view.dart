@@ -23,9 +23,13 @@ class CartView extends GetView{
         title: const Text('购物车'),
         centerTitle: true,
         actions: [
-          TextButton(onPressed: (){
-
-          }, child: const Text("编辑"))
+          Obx(() => controller.isEdit.value
+              ? TextButton(onPressed: () {
+            controller.changeEditState();
+          }, child: const Text("完成"))
+              : TextButton(onPressed: () {
+            controller.changeEditState();
+          }, child: const Text("编辑")))
         ],
       ),
       body: GetBuilder<CartController>(
@@ -68,32 +72,60 @@ class CartView extends GetView{
                             }),const Text("全选")
                           ],
                         ),
-                        Row(
+                        Obx(()=>controller.isEdit.value?Row(
                           children: [
-                            const Text("合计: "),
-                            Text("¥98.9",style: TextStyle(
-                                fontSize: ScreenAdapter.fontSize(58),
-                                color: Colors.red
-                            )),
-                            SizedBox(width: ScreenAdapter.width(20)),
+
                             ElevatedButton(
                                 style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        const Color.fromRGBO(255, 165, 0, 0.9)),
+                                    backgroundColor:
+                                    MaterialStateProperty.all(
+                                        const Color.fromRGBO(
+                                            255, 165, 0, 0.9)),
                                     foregroundColor:
-                                    MaterialStateProperty.all(Colors.white),
+                                    MaterialStateProperty.all(
+                                        Colors.white),
                                     shape: MaterialStateProperty.all(
                                       // CircleBorder()
                                         RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10)))),
-
-                                onPressed: (){
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                10)))),
+                                onPressed: () {
+                                  controller.deleteCartData();
+                                },
+                                child: const Text("删除"))
+                          ],
+                        ):Row(
+                          children: [
+                            Text("合计: "),
+                            Text("¥98.9",
+                                style: TextStyle(
+                                    fontSize:
+                                    ScreenAdapter.fontSize(58),
+                                    color: Colors.red)),
+                            SizedBox(width: ScreenAdapter.width(20)),
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                    MaterialStateProperty.all(
+                                        const Color.fromRGBO(
+                                            255, 165, 0, 0.9)),
+                                    foregroundColor:
+                                    MaterialStateProperty.all(
+                                        Colors.white),
+                                    shape: MaterialStateProperty.all(
+                                      // CircleBorder()
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                10)))),
+                                onPressed: () {
                                   //判断用户有没有登录
                                   controller.checkout();
-
-                                }, child: Text("结算")),
+                                },
+                                child: const Text("结算"))
                           ],
-                        )
+                        ))
                       ],
                     ),
                   ))
