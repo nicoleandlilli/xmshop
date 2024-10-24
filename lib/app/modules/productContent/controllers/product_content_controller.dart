@@ -8,6 +8,9 @@ import 'package:xmeshop/app/services/cardServices.dart';
 import 'package:xmeshop/app/services/http_client.dart';
 import 'package:xmeshop/app/services/screenAdapter.dart';
 import '../../../models/pcontent_model.dart';
+import '../../../routes/app_routes.dart';
+import '../../../services/storage.dart';
+import '../../../services/userServices.dart';
 
 class ProductContentController extends GetxController{
 
@@ -236,12 +239,40 @@ class ProductContentController extends GetxController{
     Get.snackbar("提示?","加入购物车成功");
   }
   //立即购买
-  void buy() {
+  void buy() async{
     setSelectedAttr();
     if (kDebugMode) {
       print("立即购买");
     }
     Get.back();
+
+    bool loginState = await isLogin();
+    if (loginState) {
+      //保存商品信息
+      List tempList = [];
+      tempList.add({
+        "_id": pcontent.value.sId,
+        "title": pcontent.value.title,
+        "price": pcontent.value.price,
+        "selectedAttr": selectedAttr.value,
+        "count": buyNum.value,
+        "pic": pcontent.value.pic,
+        "checked": true
+      });
+      Storage.setData("checkoutList", tempList);
+      //执行跳转
+      Get.toNamed(Paths.CHECKOUT);
+    } else {
+      //执行跳转
+      // Get.toNamed("/code-login-step-one");
+      Get.toNamed(Paths.CODE_LOGIN_STEP_ONE);
+      Get.snackbar("提示信息!", "您还有没有登录，请先登录");
+    }
+  }
+
+  //判断用户有没有登录
+  Future<bool> isLogin() async {
+    return await UserServices.getUserLoginState();
   }
 
 
