@@ -181,12 +181,12 @@ class CheckoutView extends GetView<CheckoutController>{
               Row(
                 children: [
                   SizedBox(width: ScreenAdapter.width(20)),
-                  const Text("共1件,合计:"),
+                  Obx(() => Text("共${controller.allNum.value}件,合计:")),
                   SizedBox(width: ScreenAdapter.width(20)),
-                  Text("¥699",
+                  Obx(() => Text("${controller.allPrice.value}",
                       style: TextStyle(
                           fontSize: ScreenAdapter.fontSize(58),
-                          color: Colors.red)),
+                          color: Colors.red))),
                   SizedBox(width: ScreenAdapter.width(20)),
                 ],
               ),

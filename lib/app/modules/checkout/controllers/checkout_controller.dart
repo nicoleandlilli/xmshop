@@ -13,6 +13,9 @@ class CheckoutController extends GetxController {
   HttpsClient httpsClient = HttpsClient();
   RxList<AddressItemModel> addressList=<AddressItemModel>[].obs;
 
+  RxDouble allPrice = 0.0.obs;
+  RxInt allNum = 0.obs;
+
   @override
   void onInit() {
     getCheckoutData();
@@ -33,6 +36,7 @@ class CheckoutController extends GetxController {
   getCheckoutData() async {
     List tempList = await Storage.getData("checkoutList");
     checkoutList.value = tempList;
+    computedAllPrice();
     update();
   }
 
@@ -56,5 +60,17 @@ class CheckoutController extends GetxController {
       addressList.value=tempAddressList.result!;
       update();
     }
+  }
+
+  //计算总价
+  computedAllPrice() {
+    double tempAllPrice = 0.0;
+    int tempNum = 0;
+    for (var i = 0; i < checkoutList.length; i++) {
+      tempAllPrice += checkoutList[i]["price"] * checkoutList[i]["count"];
+      tempNum += checkoutList[i]["count"] as int;
+    }
+    allNum.value = tempNum;
+    allPrice.value = tempAllPrice;
   }
 }
