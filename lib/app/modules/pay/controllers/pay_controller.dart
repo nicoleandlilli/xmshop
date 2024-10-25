@@ -1,17 +1,26 @@
 import 'package:get/get.dart';
 
 class PayController extends GetxController {
-  //TODO: Implement PayController
+  RxList payList = [
+    {
+      "id": 1,
+      "title": "支付宝支付",
+      "chekced": true,
+      "image": "https://www.itying.com/themes/itying/images/alipay.png"
+    },
+    {
+      "id": 2,
+      "title": "微信支付",
+      "chekced": false,
+      "image": "https://www.itying.com/themes/itying/images/weixinpay.png"
+    }
+  ].obs;
 
-  final count = 0.obs;
+  int payType = 0;
+
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
@@ -19,5 +28,15 @@ class PayController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  changePayList(index) {
+    List<Map<String, Object>> tempList = [];
+    for (var i = 0; i < payList.length; i++) {
+      payList[i]["chekced"] = false;
+      tempList.add(payList[i]);
+    }
+    tempList[index]["chekced"] = true;
+    payType=index;
+    payList.value = tempList;
+    update();
+  }
 }
