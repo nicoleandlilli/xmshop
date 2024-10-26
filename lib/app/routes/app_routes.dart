@@ -42,5 +42,7 @@ abstract class Paths {
   static const ADDRESS_ADD = '/address-add';
   static const ADDRESS_EDIT = '/address-edit';
   static const PAY = '/pay';
+  static const ORDER = '/order';
+  static const ORDER_INFO = '/order-info';
 }
 

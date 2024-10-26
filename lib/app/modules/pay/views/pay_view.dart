@@ -52,7 +52,9 @@ class PayView extends GetView<PayController> {
                 }else{
                   print("微信支付");
                 }
+                Get.toNamed("/order");
               })
+
         ],
       ),
     );
