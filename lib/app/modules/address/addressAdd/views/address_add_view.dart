@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import '../../../../services/screenAdapter.dart';
+import '../../addressList/controllers/address_list_controller.dart';
 import '../controllers/address_add_controller.dart';
 import 'package:city_pickers/city_pickers.dart';
 
 class AddressAddView extends GetView<AddressAddController> {
-  const AddressAddView({Key? key}) : super(key: key);
+  AddressListController addresscontroller = Get.put(AddressListController());
+  AddressAddView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

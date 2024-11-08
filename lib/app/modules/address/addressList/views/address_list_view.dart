@@ -9,6 +9,7 @@ import '../controllers/address_list_controller.dart';
 class AddressListView extends GetView<AddressListController> {
 // class AddressListView extends GetView {
 
+  @override
   // AddressListController controller = Get.put(AddressListController());
   const AddressListView({super.key});
   @override
